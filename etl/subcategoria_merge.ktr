@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dia_merge</name>
+    <name>subcategoria_merge</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/10/24 07:59:14.955</created_date>
+    <created_date>2021/10/24 11:28:48.732</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/10/24 07:59:14.955</modified_date>
+    <modified_date>2021/10/24 11:28:48.732</modified_date>
     <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
@@ -488,12 +488,12 @@
   </connection>
   <order>
     <hop>
-      <from>dia_public</from>
+      <from>subcategoria_public</from>
       <to>Merge rows (diff)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dia_staging</from>
+      <from>subcategoria_staging</from>
       <to>Merge rows (diff)</to>
       <enabled>Y</enabled>
     </hop>
@@ -504,7 +504,7 @@
     </hop>
   </order>
   <step>
-    <name>dia_public</name>
+    <name>subcategoria_public</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -516,12 +516,10 @@
     </partitioning>
     <connection>postgres gastos</connection>
     <sql>SELECT
-  dia
-, mes
-, anio
-, fecha
-FROM "public".dia
-order by fecha
+  subcategoria
+, categoria
+FROM "public".subcategoria
+order by subcategoria, categoria
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -531,105 +529,36 @@ order by fecha
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>dia_key</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_public</origin>
-        <comments>dia_key</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>dia</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_public</origin>
-        <comments>dia</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>mes</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_public</origin>
-        <comments>mes</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>anio</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_public</origin>
-        <comments>anio</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>fecha</name>
-        <length>-1</length>
+        <name>subcategoria</name>
+        <length>200</length>
         <precision>-1</precision>
-        <origin>dia_public</origin>
-        <comments>fecha</comments>
+        <origin>subcategoria_public</origin>
+        <comments>subcategoria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>categoria</name>
+        <length>200</length>
+        <precision>-1</precision>
+        <origin>subcategoria_public</origin>
+        <comments>categoria</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -655,13 +584,13 @@ order by fecha
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>128</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>dia_staging</name>
+    <name>subcategoria_staging</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -673,12 +602,10 @@ order by fecha
     </partitioning>
     <connection>postgres gastos</connection>
     <sql>SELECT
-  dia
-, mes
-, anio
-, fecha
-FROM staging.dia
-order by fecha
+  subcategoria
+, categoria
+FROM staging.subcategoria
+order by subcategoria, categoria
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -688,82 +615,36 @@ order by fecha
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>dia</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_staging</origin>
-        <comments>dia</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>mes</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_staging</origin>
-        <comments>mes</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>anio</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>dia_staging</origin>
-        <comments>anio</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Date</type>
-        <storagetype>normal</storagetype>
-        <name>fecha</name>
-        <length>-1</length>
+        <name>subcategoria</name>
+        <length>200</length>
         <precision>-1</precision>
-        <origin>dia_staging</origin>
-        <comments>fecha</comments>
+        <origin>Table input</origin>
+        <comments>subcategoria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>categoria</name>
+        <length>200</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>categoria</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -789,8 +670,8 @@ order by fecha
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>240</yloc>
+      <xloc>128</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -806,14 +687,16 @@ order by fecha
       <schema_name/>
     </partitioning>
     <keys>
-      <key>fecha</key>
+      <key>subcategoria</key>
+      <key>categoria</key>
     </keys>
     <values>
-      <value>fecha</value>
+      <value>subcategoria</value>
+      <value>categoria</value>
     </values>
     <flag_field>flagfield</flag_field>
-    <reference>dia_public</reference>
-    <compare>dia_staging</compare>
+    <reference>subcategoria_public</reference>
+    <compare>subcategoria_staging</compare>
     <compare>
     </compare>
     <attributes/>
@@ -825,8 +708,8 @@ order by fecha
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>192</yloc>
+      <xloc>272</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -853,31 +736,27 @@ order by fecha
     <order_delete/>
     <lookup>
       <schema>public</schema>
-      <table>dia</table>
+      <table>subcategoria</table>
       <key>
-        <name>fecha</name>
-        <field>fecha</field>
+        <name>subcategoria</name>
+        <field>subcategoria</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>categoria</name>
+        <field>categoria</field>
         <condition>=</condition>
         <name2/>
       </key>
       <value>
-        <name>dia</name>
-        <rename>dia</rename>
+        <name>subcategoria</name>
+        <rename>subcategoria</rename>
         <update>Y</update>
       </value>
       <value>
-        <name>mes</name>
-        <rename>mes</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>anio</name>
-        <rename>anio</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>fecha</name>
-        <rename>fecha</rename>
+        <name>categoria</name>
+        <rename>categoria</rename>
         <update>Y</update>
       </value>
     </lookup>
@@ -890,8 +769,8 @@ order by fecha
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>192</yloc>
+      <xloc>384</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
