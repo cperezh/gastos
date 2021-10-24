@@ -346,13 +346,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>merge</name>
+      <name>dimensions_merge</name>
       <description/>
       <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/merge.kjb</filename>
+      <filename>${Internal.Entry.Current.Directory}/dimensons_merge.kjb</filename>
       <jobname/>
       <directory/>
       <arg_from_previous>N</arg_from_previous>
@@ -378,7 +378,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>384</xloc>
+      <xloc>304</xloc>
       <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
@@ -415,7 +415,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
+      <xloc>416</xloc>
       <yloc>128</yloc>
       <attributes_kjc/>
     </entry>
@@ -432,21 +432,21 @@
     </hop>
     <hop>
       <from>dimensions</from>
+      <to>dimensions_merge</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>dimensions_merge</from>
       <to>facts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>facts</from>
-      <to>merge</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
