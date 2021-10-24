@@ -348,7 +348,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>subvcategoria</name>
+      <name>subcategoria</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
@@ -399,7 +399,7 @@
     </hop>
     <hop>
       <from>Start</from>
-      <to>subvcategoria</to>
+      <to>subcategoria</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
