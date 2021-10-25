@@ -309,13 +309,13 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>ingresos</name>
+      <name>gastos_fact</name>
       <description/>
       <type>TRANS</type>
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/ingresos.ktr</filename>
+      <filename>C:/Users/Carlos/Proyectos/Gastos/etl/gastos_fact.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -351,7 +351,7 @@
   <hops>
     <hop>
       <from>Start</from>
-      <to>ingresos</to>
+      <to>gastos_fact</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
