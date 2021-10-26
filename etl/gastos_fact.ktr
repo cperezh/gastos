@@ -616,7 +616,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>608</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -937,7 +937,7 @@ FROM staging.gastos
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>688</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -991,7 +991,7 @@ FROM staging.gastos
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
+      <xloc>528</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>

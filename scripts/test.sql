@@ -12,35 +12,21 @@ insert into public.subcategoria(subcategoria_key, subcategoria, categoria) value
 
 
 -- Primera prueba: Gasto vacia, no inserta nada en las dimensiones
-select count(*) from staging.subcategoria, staging.dia;
+select count(*) from staging.subcategoria, staging.dia, staging.gastos_fact;
 
 -- Inserto 1 gasto
-insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (1000, '2021-01-02', 'CAT1', 'SUBCAT1')
-select * from public.subcategoria;
-select * from public.dia;
-select * from staging.gastos_fact;
-
--- Inserto otro gasto. No debe modificar lo anterior
-truncate table stating.gastos;
-insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (2000, '2021-01-03', 'CAT2', 'SUBCAT2')
-select * from staging.subcategoria;
-select * from staging.dia;
-
--- Inserto el mismo primer gasto. No debe duplicar ni las dimensiones ni el gasto
-truncate table staging.gastos;
-insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (1000, '2021-01-02', 'CAT1', 'SUBCAT1')
-select * from public.subcategoria;
-select * from public.dia;
-
+-- Inserto otro gasto. debe insertar nuevo gasto y nuevas dimensaiones
+-- Inserto gasto con mismas dimensiones. No debe duplicar las dimensiones
 -- Inserto gasto con dias nulo e invalido. Deba acabar con dia_key = 0 y -1
-truncate table staging.gastos;
-insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (4000, NULL, 'CAT4', 'SUBCAT4');
---insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (5000, 'hola', 'CAT5', 'SUBCAT5');
-select * from public.subcategoria;
-select * from public.dia;
-
 -- Inserto gasto con subcategora o categoria NULL. Debe acabar con subcategoria_key = 0
-truncate table staging.gastos;
+insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (1000, '2021-01-02', 'CAT1', 'SUBCAT1');
+insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (2000, '2021-01-03', 'CAT2', 'SUBCAT2');
+insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (3000, '2021-01-02', 'CAT1', 'SUBCAT1');
+insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (4000, NULL, 'CAT4', 'SUBCAT4');
 insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (6000, '2021-06-01', NULL, 'SUBCAT6');
 insert into staging.gastos(importe, fvalor, categoria, subcategoria) values (7000, '2021-06-01', 'CAT7', NULL);
 
+select * from staging.gastos
+select * from public.subcategoria;
+select * from public.dia;
+select * from staging.gastos_fact;
