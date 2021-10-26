@@ -493,33 +493,53 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dia_key</from>
-      <to>subcategoria_key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values 2</from>
       <to>gastos_fact</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values</from>
-      <to>nulos</to>
+      <to>fecha not null</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>nulos</from>
+      <from>fecha not null</from>
       <to>dia_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>subcategoria_key</from>
-      <to>invalid keys</to>
+      <from>fecha not null</from>
+      <to>dia_key = 0</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>invalid keys</from>
+      <from>subcategoria_key</from>
       <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dia_key</from>
+      <to>subcat not null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dia_key = 0</from>
+      <to>subcat not null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>subcat not null</from>
+      <to>subcategoria_key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>subcat not null</from>
+      <to>subcategoria_key = 0</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>subcategoria_key = 0</from>
+      <to>subcategoria_key</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -596,7 +616,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>592</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -917,93 +937,7 @@ FROM staging.gastos
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>invalid keys</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue>-1</replaceAllByValue>
-    <replaceAllMask/>
-    <selectFields>N</selectFields>
-    <selectValuesType>N</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>dia_key</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>nulos</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue>0</replaceAllByValue>
-    <replaceAllMask/>
-    <selectFields>N</selectFields>
-    <selectValuesType>Y</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      <valuetype>
-        <name>Date</name>
-        <value>1900-01-01</value>
-        <mask>yyyy-MM-dd</mask>
-        <set_type_empty_string>N</set_type_empty_string>
-      </valuetype>
-      <valuetype>
-        <name>String</name>
-        <value>UNKNOWN</value>
-        <mask/>
-        <set_type_empty_string>N</set_type_empty_string>
-      </valuetype>
-    </valuetypes>
-    <fields>
-      </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
+      <xloc>672</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1057,8 +991,168 @@ FROM staging.gastos
       </output>
     </remotesteps>
     <GUI>
+      <xloc>512</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>fecha not null</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>dia_key</send_true_to>
+    <send_false_to>dia_key = 0</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>fecha</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dia_key = 0</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>dia_key</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>subcat not null</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>subcategoria_key</send_true_to>
+    <send_false_to>subcategoria_key = 0</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>subcategoria</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue/>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>categoria</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue/>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
       <xloc>400</xloc>
       <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>subcategoria_key = 0</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>subcategoria_key</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
