@@ -8,6 +8,11 @@
 
 - Run ```etl/main.kjb``` after loading new movements ins taging to update public analysis model
 
+# Dimensional model
+- File ```doc/dimensional.drawio```
+
+![Screenshot](doc/dimensional.drawio.png)
+
 # WIP
 
 - TODO: Load new movements by script
