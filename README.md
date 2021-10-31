@@ -13,6 +13,9 @@
 
 ![Screenshot](doc/dimensional.drawio.png)
 
+# Backup de los ficheros de movimeintos
+etl\in_todos
+
 # WIP
 
 - TODO: Load new movements by script
