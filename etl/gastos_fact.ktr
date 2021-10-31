@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ingresos</name>
+    <name>gastos</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -571,6 +572,10 @@
         <name>importe</name>
         <rename/>
       </field>
+      <field>
+        <name>saldo</name>
+        <rename/>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -609,6 +614,10 @@
       </field>
       <field>
         <name>importe</name>
+        <rename/>
+      </field>
+      <field>
+        <name>saldo</name>
         <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
