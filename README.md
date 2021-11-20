@@ -4,7 +4,7 @@
 
 ## Extra - Load in parts
 
-- Run ```etl/gastos.ktr``` to load new Movements on staging area
+- Run ```etl/movimientos.ktr``` to load new Movements on staging area
 
 - Run ```etl/main.kjb``` after loading new movements ins taging to update public analysis model
 
