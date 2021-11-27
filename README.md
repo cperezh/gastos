@@ -16,6 +16,21 @@
 # Backup de los ficheros de movimeintos
 etl\in_todos
 
+# Notebook
+### Installation
+1. Run CMD
+2. Navigate to **jupyter** folder
+3. Run ```python -m venv gastos_env```
+4. Run ```gastos_env/Scripts/activate```
+5. @**jupyter** folder, run ```pip install -r requirements.txt```
+
+### Run
+1. Run CMD
+2. Navigate to **jupyter** folder
+3. Run ```gastos_env/Scripts/activate```
+4. Run ```jupyter notebook```
+
+
 # WIP
 
 - TODO: Load new movements by script
