@@ -1,3 +1,7 @@
 .ipynb_checkpoints
 .vscode
 env-gastos
+jupyter/gastos_env/Include
+jupyter/gastos_env/Lib
+jupyter/gastos_env/Scripts
+jupyter/gastos_env/pyvenv.cfg
