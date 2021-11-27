@@ -1,10 +1,18 @@
-# ETL RUN
+# Source code structure
+- **doc**: documentation
+- **etl**: etl processes
+- **jupyter**: notebooks
+- **db**: database 
 
-- Run ```main.bat``` to process movements on file ```etl/in/Movements.xls```
+
+# ETL
+## RUN
+
+- Run ```run.bat``` to process movements on file ```etl/in/Movements.xls``` and load DWH
 
 ## Extra - Load in parts
-
-- Run ```etl/gastos.ktr``` to load new Movements on staging area
+			   
+- Run ```etl/gastos.ktr``` to load new Movements onto staging area
 
 - Run ```etl/main.kjb``` after loading new movements ins taging to update public analysis model
 
