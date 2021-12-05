@@ -39,8 +39,7 @@
 ## Run
 1. Run CMD
 2. Navigate to **jupyter** folder
-3. Run ```gastos_env/Scripts/activate```
-4. Run ```jupyter notebook```
+3. Run ```run_jupyter.bat```
 
 # DB
 TODO
