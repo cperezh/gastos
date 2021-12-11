@@ -8,6 +8,7 @@ delete from public.subcategoria;
 delete from public.dia;
 
 -- Primera prueba: Gasto vacia, no inserta nada en las dimensiones
+-- Run ETL
 select count(*) from staging.subcategoria, staging.dia, staging.gastos_fact;
 
 -- Inserto 1 gasto
