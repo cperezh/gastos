@@ -42,5 +42,11 @@
 3. Run ```run_jupyter.bat```
 
 # DB
-TODO
+
+## Installation
+1. Install PostgreSQL 11.4
+2. Create ```gastos``` db 
+3. Set **postgres** user password to **postgres**
+3. Run ```starting_schema.sql```
+4. Run ```inserts.sql```
 
