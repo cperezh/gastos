@@ -8,7 +8,9 @@
 -- Started on 2021-11-28 21:56:40
 
 
-CREATE SCHEMA staging;
+-------------------------------
+-- PUBLIC SCHEMA --------------
+-------------------------------
 
 CREATE TABLE public.dia (
     dia integer NOT NULL,
@@ -18,16 +20,6 @@ CREATE TABLE public.dia (
     dia_key integer NOT NULL
 );
 
-CREATE SEQUENCE public.dia_dia_key_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE public.dia_dia_key_seq OWNED BY public.dia.dia_key;
-
 CREATE TABLE public.gastos_fact (
     gastos_fact_key integer NOT NULL,
     importe numeric NOT NULL,
@@ -36,38 +28,29 @@ CREATE TABLE public.gastos_fact (
     saldo numeric NOT NULL
 );
 
-CREATE SEQUENCE public.gastos_fact_gastos_fact_key_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE public.gastos_fact_gastos_fact_key_seq OWNED BY public.gastos_fact.gastos_fact_key;
-
-
 CREATE TABLE public.subcategoria (
     subcategoria_key integer NOT NULL,
     subcategoria character(200) NOT NULL,
     categoria character(200) NOT NULL
 );
 
-CREATE SEQUENCE public.subcategoria_subcategoria_key_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+--------------------------------
+-- STAGING SCHEMA --------------
+--------------------------------
 
-ALTER SEQUENCE public.subcategoria_subcategoria_key_seq OWNED BY public.subcategoria.subcategoria_key;
+
+CREATE SCHEMA staging;
 
 CREATE TABLE staging.dia (
     dia integer NOT NULL,
     mes integer NOT NULL,
     anio integer NOT NULL,
     fecha date NOT NULL
+);
+
+CREATE TABLE staging.subcategoria (
+    subcategoria character(200) NOT NULL,
+    categoria character(200) NOT NULL
 );
 
 CREATE TABLE staging.gastos_fact (
@@ -89,6 +72,40 @@ CREATE TABLE staging.movimientos (
     movimientos_key integer NOT NULL
 );
 
+--------------------------------
+-- SECUENCIAS PARA PKs ---------
+--------------------------------
+
+CREATE SEQUENCE public.dia_dia_key_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE public.dia_dia_key_seq OWNED BY public.dia.dia_key;
+
+CREATE SEQUENCE public.gastos_fact_gastos_fact_key_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE public.gastos_fact_gastos_fact_key_seq OWNED BY public.gastos_fact.gastos_fact_key;
+
+CREATE SEQUENCE public.subcategoria_subcategoria_key_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER SEQUENCE public.subcategoria_subcategoria_key_seq OWNED BY public.subcategoria.subcategoria_key;
+
 CREATE SEQUENCE staging.movimientos_movimientos_key_seq
     AS integer
     START WITH 1
@@ -99,11 +116,6 @@ CREATE SEQUENCE staging.movimientos_movimientos_key_seq
 
 ALTER SEQUENCE staging.movimientos_movimientos_key_seq OWNED BY staging.movimientos.movimientos_key;
 
-CREATE TABLE staging.subcategoria (
-    subcategoria character(200) NOT NULL,
-    categoria character(200) NOT NULL
-);
-
 ALTER TABLE ONLY public.dia ALTER COLUMN dia_key SET DEFAULT nextval('public.dia_dia_key_seq'::regclass);
 
 ALTER TABLE ONLY public.gastos_fact ALTER COLUMN gastos_fact_key SET DEFAULT nextval('public.gastos_fact_gastos_fact_key_seq'::regclass);
@@ -111,6 +123,11 @@ ALTER TABLE ONLY public.gastos_fact ALTER COLUMN gastos_fact_key SET DEFAULT nex
 ALTER TABLE ONLY public.subcategoria ALTER COLUMN subcategoria_key SET DEFAULT nextval('public.subcategoria_subcategoria_key_seq'::regclass);
 
 ALTER TABLE ONLY staging.movimientos ALTER COLUMN movimientos_key SET DEFAULT nextval('staging.movimientos_movimientos_key_seq'::regclass);
+
+
+--------------------------------
+----------- PKs ----------------
+--------------------------------
 
 ALTER TABLE ONLY public.dia
     ADD CONSTRAINT dia_pkey PRIMARY KEY (dia_key);
@@ -123,6 +140,10 @@ ALTER TABLE ONLY public.subcategoria
 
 ALTER TABLE ONLY staging.movimientos
     ADD CONSTRAINT movimientos_pkey PRIMARY KEY (movimientos_key);
+
+--------------------------------
+----------- FKs ----------------
+--------------------------------
 
 ALTER TABLE ONLY public.gastos_fact
     ADD CONSTRAINT fk_dia FOREIGN KEY (dia_key) REFERENCES public.dia(dia_key) NOT VALID;
