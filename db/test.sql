@@ -6,11 +6,6 @@ truncate table staging.gastos_fact;
 truncate table public.gastos_fact;
 delete from public.subcategoria;
 delete from public.dia;
-insert into public.dia(dia_key, dia, mes, anio, fecha) values(0, 0, 0, 0,' 1900-01-01');
-insert into public.dia(dia_key, dia, mes, anio, fecha) values(-1,-1, -1, -1, '1900-01-01');
-insert into public.subcategoria(subcategoria_key, subcategoria, categoria) values(0,'UNKNOWN','UNKNOWN');
-insert into public.subcategoria(subcategoria_key, subcategoria, categoria) values(-1,'INVALID','INVALID');
-
 
 -- Primera prueba: Gasto vacia, no inserta nada en las dimensiones
 select count(*) from staging.subcategoria, staging.dia, staging.gastos_fact;

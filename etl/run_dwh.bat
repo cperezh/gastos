@@ -1,0 +1,1 @@
+call Kitchen.bat /file:main.kjb

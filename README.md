@@ -9,7 +9,8 @@
 
 ## RUN
 
-- Run ```run.bat``` to process movements on file ```/in/Movements.csv``` and load DWH
+- Run ```run_full.bat``` to process movements on file ```/in/Movements.csv``` and load DWH
+- Run ```run_dwh.bat``` to load DWH with movements in stating (for testing purpose)
 
 ## Extra - Load in parts
 			   
@@ -30,6 +31,7 @@
 # Jupyter
 
 ## Installation
+
 1. Run CMD
 2. Navigate to **jupyter** folder
 3. Run ```python -m venv gastos_env```
@@ -37,6 +39,7 @@
 5. @**jupyter** folder, run ```pip install -r requirements.txt```
 
 ## Run
+
 1. Run CMD
 2. Navigate to **jupyter** folder
 3. Run ```run_jupyter.bat```
@@ -44,9 +47,14 @@
 # DB
 
 ## Installation
+
 1. Install PostgreSQL 11.4
 2. Create ```gastos``` db 
 3. Set **postgres** user password to **postgres**
 3. Run ```starting_schema.sql```
 4. Run ```inserts.sql```
+
+## Testing
+
+1. Run ```test.sql``` step by step. After each step, run 
 
