@@ -1,1 +1,1 @@
-call Kitchen.bat /file:main.kjb
+call Kitchen.bat /file:./main.kjb
