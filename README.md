@@ -58,3 +58,8 @@
 
 1. Run ```test.sql``` step by step. After each step, run 
 
+# Testing
+
+1. Run CMD
+2. Navigate to **test** folder
+3. Run ```python -m venv test_env```
