@@ -2,17 +2,19 @@ import os
 import pandas as pd
 from DbConnection import DbConnection
 
-def test_empty(conn):
+def test_empty(dbConn:DbConnection):
     '''
     Primera prueba: Gasto vacia, no inserta nada en las dimensiones
     '''
 
-    run_etl()
+    #run_etl()
 
     query = '''
-    select count(*) from staging.subcategoria, staging.dia, staging.gastos_fact;
+    select 30 from staging.subcategoria, staging.dia, staging.gastos_fact;
     '''
-    df_result = run_query(query, conn)
+    df_result = dbConn.exec_query(query)
+
+    print(df_result)
 
     if len(df_result)==0:
         resultado = "OK"
@@ -22,22 +24,13 @@ def test_empty(conn):
     return resultado
 
 def run_etl():
-    os.system("..\\etl\\run_dwh")
-
-def run_query(query, conn):
-   
-    df = pd.read_sql_query(query,con=conn)
-
-    return df
+    os.system("..\\etl\\run_dwh C:/Users/Carlos/Proyectos/gastos/etl >>salida.log")
 
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel
 
-    db_conn = connect()
+    dbConnection = DbConnection()
     
-    run_etl()
-    #resultado = test_empty(db_conn)
+    resultado = test_empty(dbConnection)
 
-    #print(resultado)
-
-    close_conn(db_conn)
+    print(resultado)
