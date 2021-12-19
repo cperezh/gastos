@@ -11,6 +11,10 @@ class DbConnector:
             self.connection = self._connect() 
         
         return self.connection
+    
+    def closeConnection(self):
+        self.connection.close()
+        self.connection = None
 
     # Private methos to connect to db
     def _connect(self):

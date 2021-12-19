@@ -1,19 +1,6 @@
 import os
-import psycopg2
 import pandas as pd
-
-def connect():
-    conn = psycopg2.connect(host="localhost"
-    , database="gastos"
-    , user="postgres"
-    , password="postgres")
-
-    conn.set_session(autocommit=True)
-
-    return conn
-
-def close_conn(conn):
-    conn.close()
+from DbConnection import DbConnection
 
 def test_empty(conn):
     '''

@@ -17,16 +17,19 @@ class DbConnection:
 
         df = pd.read_sql_query(query,con=conn)
 
+        self.connector.closeConnection()
+
         return df
 
 
 if __name__=="__main__":
     
     db = DbConnection()
-    df = db.exec_query("select * from dia")
+    df = db.exec_query("select * from staging.movimientos")
 
     print(len(df))
     
     db2 = DbConnection()
-    #db.exec_query()
+    df2 = db2.exec_query("select * from staging.movimientos")
+    print(len(df2))
     
