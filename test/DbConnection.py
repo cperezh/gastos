@@ -10,7 +10,7 @@ class DbConnection:
 
     connector = DbConnector()
 
-    def exec_query(self, query):
+    def exec_query(self, query:str):
         ''' Executes query'''
 
         conn = self.connector.getConnection()
@@ -20,6 +20,18 @@ class DbConnection:
         self.connector.closeConnection()
 
         return df
+    
+    def exec_script(self, script:str):
+
+        conn = self.connector.getConnection()
+    
+        cursor = conn.cursor()
+
+        cursor.execute(script)
+
+        cursor.close()
+
+        self.connector.closeConnection()
 
 
 if __name__=="__main__":
