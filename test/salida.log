@@ -1122,3 +1122,861 @@ DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
 2021/12/20 22:17:43 - Kitchen - Finished!
 2021/12/20 22:17:43 - Kitchen - Start=2021/12/20 22:17:39.739, Stop=2021/12/20 22:17:43.351
 2021/12/20 22:17:43 - Kitchen - Processing ended after 3 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:43:06,083 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:43:12,438 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:43:17 - Kitchen - Start of run.
+21:43:30,446 INFO  [DriverManager] Installing driver kars.
+21:43:30,450 INFO  [DriverManager] 0 drivers will be installed.
+21:43:30,451 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 21:43:41 - main - Start of job execution
+2021/12/21 21:43:41 - main - Starting entry [dimensions]
+2021/12/21 21:43:41 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 21:43:41 - dimensions - Starting entry [dia]
+2021/12/21 21:43:41 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 21:43:41 - dimensions - Starting entry [subcategoria]
+2021/12/21 21:43:41 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 21:43:42 - dia - Using run configuration [Pentaho local]
+2021/12/21 21:43:42 - dia - Running transformation using the Kettle execution engine
+2021/12/21 21:43:42 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 21:43:42 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 21:43:42 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 21:43:42 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 21:43:42 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:43:42 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:43:43 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:43 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:43 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:43:43 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:43:43 - main - Starting entry [dimensions_merge]
+2021/12/21 21:43:43 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 21:43:43 - merge - Starting entry [dia_merge]
+2021/12/21 21:43:43 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 21:43:43 - merge - Starting entry [subcategoria_merge]
+2021/12/21 21:43:43 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 21:43:43 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 21:43:43 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:43:43 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 21:43:43 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 21:43:43 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:43:43 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 21:43:43 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:43 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:43:43 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:43 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:43 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:43 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:43:43 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:43:43 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:43:43 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:43:43 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:43:43 - main - Starting entry [facts]
+2021/12/21 21:43:43 - facts - Using run configuration [Pentaho local]
+2021/12/21 21:43:43 - facts - Starting entry [gastos_fact]
+2021/12/21 21:43:43 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 21:43:43 - gastos_fact - Starting entry [clean values]
+2021/12/21 21:43:44 - clean values - Using run configuration [Pentaho local]
+2021/12/21 21:43:44 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 21:43:44 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 21:43:44 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:44 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 21:43:44 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 21:43:44 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 21:43:44 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 21:43:44 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:43:44 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:44 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 21:43:44 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 21:43:44 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 21:43:44 - main - Starting entry [facts_merge]
+2021/12/21 21:43:44 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 21:43:44 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 21:43:44 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 21:43:44 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:43:44 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 21:43:45 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:45 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:43:45 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 21:43:45 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 21:43:45 - main - Finished job entry [facts] (result=[true])
+2021/12/21 21:43:45 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 21:43:45 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 21:43:45 - main - Job execution finished
+2021/12/21 21:43:45 - Kitchen - Finished!
+2021/12/21 21:43:45 - Kitchen - Start=2021/12/21 21:43:41.503, Stop=2021/12/21 21:43:45.406
+2021/12/21 21:43:45 - Kitchen - Processing ended after 3 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:50:10,243 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:50:16,496 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:50:21 - Kitchen - Start of run.
+21:50:33,225 INFO  [DriverManager] Installing driver kars.
+21:50:33,228 INFO  [DriverManager] 0 drivers will be installed.
+21:50:33,229 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 21:50:45 - main - Start of job execution
+2021/12/21 21:50:45 - main - Starting entry [dimensions]
+2021/12/21 21:50:45 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 21:50:45 - dimensions - Starting entry [dia]
+2021/12/21 21:50:45 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 21:50:45 - dimensions - Starting entry [subcategoria]
+2021/12/21 21:50:45 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 21:50:45 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 21:50:45 - dia - Using run configuration [Pentaho local]
+2021/12/21 21:50:45 - dia - Running transformation using the Kettle execution engine
+2021/12/21 21:50:45 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 21:50:45 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 21:50:45 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 21:50:46 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:50:46 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:50:46 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:46 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:46 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:50:46 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:50:46 - main - Starting entry [dimensions_merge]
+2021/12/21 21:50:46 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 21:50:46 - merge - Starting entry [dia_merge]
+2021/12/21 21:50:46 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 21:50:46 - merge - Starting entry [subcategoria_merge]
+2021/12/21 21:50:46 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 21:50:46 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 21:50:46 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:50:46 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 21:50:46 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 21:50:46 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:50:46 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 21:50:47 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:47 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:47 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:50:47 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:47 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:47 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:50:47 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:50:47 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:50:47 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:50:47 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:50:47 - main - Starting entry [facts]
+2021/12/21 21:50:47 - facts - Using run configuration [Pentaho local]
+2021/12/21 21:50:47 - facts - Starting entry [gastos_fact]
+2021/12/21 21:50:47 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 21:50:47 - gastos_fact - Starting entry [clean values]
+2021/12/21 21:50:47 - clean values - Using run configuration [Pentaho local]
+2021/12/21 21:50:47 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 21:50:47 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 21:50:47 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:47 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 21:50:47 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 21:50:47 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 21:50:47 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 21:50:47 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:50:48 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:48 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 21:50:48 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 21:50:48 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 21:50:48 - main - Starting entry [facts_merge]
+2021/12/21 21:50:48 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 21:50:48 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 21:50:48 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 21:50:48 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:50:48 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 21:50:48 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:48 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:50:48 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 21:50:48 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 21:50:48 - main - Finished job entry [facts] (result=[true])
+2021/12/21 21:50:48 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 21:50:48 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 21:50:48 - main - Job execution finished
+2021/12/21 21:50:48 - Kitchen - Finished!
+2021/12/21 21:50:48 - Kitchen - Start=2021/12/21 21:50:45.226, Stop=2021/12/21 21:50:48.617
+2021/12/21 21:50:48 - Kitchen - Processing ended after 3 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:51:19,841 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:51:26,117 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:51:29 - Kitchen - Start of run.
+21:51:39,245 INFO  [DriverManager] Installing driver kars.
+21:51:39,247 INFO  [DriverManager] 0 drivers will be installed.
+21:51:39,248 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 21:51:49 - main - Start of job execution
+2021/12/21 21:51:49 - main - Starting entry [dimensions]
+2021/12/21 21:51:49 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 21:51:49 - dimensions - Starting entry [dia]
+2021/12/21 21:51:49 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 21:51:49 - dimensions - Starting entry [subcategoria]
+2021/12/21 21:51:49 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 21:51:50 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 21:51:50 - dia - Using run configuration [Pentaho local]
+2021/12/21 21:51:50 - dia - Running transformation using the Kettle execution engine
+2021/12/21 21:51:50 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 21:51:50 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 21:51:50 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 21:51:50 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:51:50 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:51:50 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:50 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:50 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:51:50 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:51:50 - main - Starting entry [dimensions_merge]
+2021/12/21 21:51:50 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 21:51:50 - merge - Starting entry [dia_merge]
+2021/12/21 21:51:50 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 21:51:50 - merge - Starting entry [subcategoria_merge]
+2021/12/21 21:51:50 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 21:51:51 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 21:51:51 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:51:51 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 21:51:51 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 21:51:51 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:51:51 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 21:51:51 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:51 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:51 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:51:51 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:51 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:51:51 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:51 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:51:51 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:51:51 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:51:51 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:51:51 - main - Starting entry [facts]
+2021/12/21 21:51:51 - facts - Using run configuration [Pentaho local]
+2021/12/21 21:51:51 - facts - Starting entry [gastos_fact]
+2021/12/21 21:51:51 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 21:51:51 - gastos_fact - Starting entry [clean values]
+2021/12/21 21:51:51 - clean values - Using run configuration [Pentaho local]
+2021/12/21 21:51:51 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 21:51:51 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 21:51:52 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:52 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 21:51:52 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 21:51:52 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 21:51:52 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 21:51:52 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:51:52 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:52 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 21:51:52 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 21:51:52 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 21:51:52 - main - Starting entry [facts_merge]
+2021/12/21 21:51:52 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 21:51:52 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 21:51:52 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 21:51:52 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:51:52 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 21:51:52 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:52 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:51:52 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 21:51:52 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 21:51:52 - main - Finished job entry [facts] (result=[true])
+2021/12/21 21:51:52 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 21:51:52 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 21:51:52 - main - Job execution finished
+2021/12/21 21:51:52 - Kitchen - Finished!
+2021/12/21 21:51:52 - Kitchen - Start=2021/12/21 21:51:49.675, Stop=2021/12/21 21:51:52.820
+2021/12/21 21:51:52 - Kitchen - Processing ended after 3 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:53:01,155 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:53:07,446 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:53:10 - Kitchen - Start of run.
+21:53:20,426 INFO  [DriverManager] Installing driver kars.
+21:53:20,428 INFO  [DriverManager] 0 drivers will be installed.
+21:53:20,429 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 21:53:30 - main - Start of job execution
+2021/12/21 21:53:30 - main - Starting entry [dimensions]
+2021/12/21 21:53:30 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 21:53:30 - dimensions - Starting entry [dia]
+2021/12/21 21:53:30 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 21:53:30 - dimensions - Starting entry [subcategoria]
+2021/12/21 21:53:30 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 21:53:31 - dia - Using run configuration [Pentaho local]
+2021/12/21 21:53:31 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 21:53:31 - dia - Running transformation using the Kettle execution engine
+2021/12/21 21:53:31 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 21:53:31 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 21:53:31 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 21:53:31 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:53:31 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:53:31 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:32 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:53:32 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:32 - Filter rows.0 - Procesamiento finalizado (I=0, O=0, R=6, W=4, U=0, E=0)
+2021/12/21 21:53:32 - String operations.0 - Procesamiento finalizado (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 21:53:32 - Sort rows.0 - Procesamiento finalizado (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 21:53:32 - Unique rows.0 - Procesamiento finalizado (I=0, O=0, R=4, W=3, U=0, E=0)
+2021/12/21 21:53:32 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:32 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:53:32 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:32 - Filter null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=5, U=0, E=0)
+2021/12/21 21:53:32 - Table output.0 - Procesamiento finalizado (I=0, O=3, R=3, W=3, U=0, E=0)
+2021/12/21 21:53:32 - Sort rows.0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:53:32 - Unique rows.0 - Procesamiento finalizado (I=0, O=0, R=5, W=3, U=0, E=0)
+2021/12/21 21:53:32 - Calculator.0 - Procesamiento finalizado (I=0, O=0, R=3, W=3, U=0, E=0)
+2021/12/21 21:53:32 - dia.0 - Procesamiento finalizado (I=0, O=3, R=3, W=3, U=0, E=0)
+2021/12/21 21:53:32 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:53:32 - main - Starting entry [dimensions_merge]
+2021/12/21 21:53:32 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 21:53:32 - merge - Starting entry [dia_merge]
+2021/12/21 21:53:32 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 21:53:32 - merge - Starting entry [subcategoria_merge]
+2021/12/21 21:53:32 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 21:53:32 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 21:53:32 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:53:32 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 21:53:32 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:53:32 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 21:53:32 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 21:53:32 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:32 - dia_staging.0 - Procesamiento finalizado (I=3, O=0, R=0, W=3, U=0, E=0)
+2021/12/21 21:53:32 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:32 - subcategoria_staging.0 - Procesamiento finalizado (I=3, O=0, R=0, W=3, U=0, E=0)
+2021/12/21 21:53:32 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:32 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:53:32 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:32 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:53:33 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:53:33 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:53:33 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=3, R=5, W=5, U=0, E=0)
+2021/12/21 21:53:33 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=3, R=5, W=5, U=0, E=0)
+2021/12/21 21:53:33 - main - Starting entry [facts]
+2021/12/21 21:53:33 - facts - Using run configuration [Pentaho local]
+2021/12/21 21:53:33 - facts - Starting entry [gastos_fact]
+2021/12/21 21:53:33 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 21:53:33 - gastos_fact - Starting entry [clean values]
+2021/12/21 21:53:33 - clean values - Using run configuration [Pentaho local]
+2021/12/21 21:53:33 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 21:53:33 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 21:53:33 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:33 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=18, U=0, E=0)
+2021/12/21 21:53:33 - El VALLE.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 21:53:33 - MANSO Y RIVA, SL.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 21:53:33 - MANSO Y RIVA, SL 2.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 21:53:33 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 21:53:33 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 21:53:33 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 21:53:33 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 21:53:33 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:53:33 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:33 - gastos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:53:33 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:33 - fecha not null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:33 - dia_key = 0.0 - Procesamiento finalizado (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/21 21:53:33 - dia_key.0 - Procesamiento finalizado (I=5, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:53:33 - subcat not null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:33 - subcategoria_key = 0.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:53:34 - subcategoria_key.0 - Procesamiento finalizado (I=4, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 21:53:34 - Select values 2.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:34 - gastos_fact.0 - Procesamiento finalizado (I=0, O=6, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:34 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 21:53:34 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 21:53:34 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 21:53:34 - main - Starting entry [facts_merge]
+2021/12/21 21:53:34 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 21:53:34 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 21:53:34 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 21:53:34 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:53:34 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 21:53:34 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:34 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:53:34 - gastos_fact_staging.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:53:34 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:34 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=6, R=6, W=6, U=0, E=0)
+2021/12/21 21:53:34 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 21:53:34 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 21:53:34 - main - Finished job entry [facts] (result=[true])
+2021/12/21 21:53:34 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 21:53:34 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 21:53:34 - main - Job execution finished
+2021/12/21 21:53:34 - Kitchen - Finished!
+2021/12/21 21:53:34 - Kitchen - Start=2021/12/21 21:53:30.618, Stop=2021/12/21 21:53:34.618
+2021/12/21 21:53:34 - Kitchen - Processing ended after 4 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:56:36,387 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:56:42,655 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:56:45 - Kitchen - Start of run.
+21:56:54,323 INFO  [DriverManager] Installing driver kars.
+21:56:54,326 INFO  [DriverManager] 0 drivers will be installed.
+21:56:54,327 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 21:57:01 - main - Start of job execution
+2021/12/21 21:57:01 - main - Starting entry [dimensions]
+2021/12/21 21:57:01 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 21:57:01 - dimensions - Starting entry [dia]
+2021/12/21 21:57:01 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 21:57:01 - dimensions - Starting entry [subcategoria]
+2021/12/21 21:57:01 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 21:57:01 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 21:57:01 - dia - Using run configuration [Pentaho local]
+2021/12/21 21:57:01 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 21:57:01 - dia - Running transformation using the Kettle execution engine
+2021/12/21 21:57:01 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 21:57:01 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 21:57:02 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:57:02 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:57:02 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:02 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:02 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:02 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:57:02 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:02 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:57:02 - Filter rows.0 - Procesamiento finalizado (I=0, O=0, R=6, W=4, U=0, E=0)
+2021/12/21 21:57:02 - Filter null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=5, U=0, E=0)
+2021/12/21 21:57:02 - String operations.0 - Procesamiento finalizado (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 21:57:02 - Sort rows.0 - Procesamiento finalizado (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 21:57:02 - Unique rows.0 - Procesamiento finalizado (I=0, O=0, R=4, W=3, U=0, E=0)
+2021/12/21 21:57:02 - Sort rows.0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:57:02 - Unique rows.0 - Procesamiento finalizado (I=0, O=0, R=5, W=3, U=0, E=0)
+2021/12/21 21:57:02 - Calculator.0 - Procesamiento finalizado (I=0, O=0, R=3, W=3, U=0, E=0)
+2021/12/21 21:57:02 - Table output.0 - Procesamiento finalizado (I=0, O=3, R=3, W=3, U=0, E=0)
+2021/12/21 21:57:02 - dia.0 - Procesamiento finalizado (I=0, O=3, R=3, W=3, U=0, E=0)
+2021/12/21 21:57:02 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:57:02 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:57:02 - main - Starting entry [dimensions_merge]
+2021/12/21 21:57:02 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 21:57:02 - merge - Starting entry [dia_merge]
+2021/12/21 21:57:02 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 21:57:02 - merge - Starting entry [subcategoria_merge]
+2021/12/21 21:57:02 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 21:57:02 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 21:57:02 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:57:02 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 21:57:02 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 21:57:02 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:57:02 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 21:57:02 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:02 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:57:02 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:02 - dia_staging.0 - Procesamiento finalizado (I=3, O=0, R=0, W=3, U=0, E=0)
+2021/12/21 21:57:02 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:02 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:02 - subcategoria_staging.0 - Procesamiento finalizado (I=3, O=0, R=0, W=3, U=0, E=0)
+2021/12/21 21:57:02 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:57:03 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:57:03 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=3, R=5, W=5, U=0, E=0)
+2021/12/21 21:57:03 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:57:03 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=3, R=5, W=5, U=0, E=0)
+2021/12/21 21:57:03 - main - Starting entry [facts]
+2021/12/21 21:57:03 - facts - Using run configuration [Pentaho local]
+2021/12/21 21:57:03 - facts - Starting entry [gastos_fact]
+2021/12/21 21:57:03 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 21:57:03 - gastos_fact - Starting entry [clean values]
+2021/12/21 21:57:03 - clean values - Using run configuration [Pentaho local]
+2021/12/21 21:57:03 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 21:57:03 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 21:57:03 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:03 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=18, U=0, E=0)
+2021/12/21 21:57:03 - MANSO Y RIVA, SL.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 21:57:03 - MANSO Y RIVA, SL 2.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 21:57:03 - El VALLE.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 21:57:03 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 21:57:03 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 21:57:03 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 21:57:03 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 21:57:03 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:57:03 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:03 - gastos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:57:03 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:03 - fecha not null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:03 - dia_key = 0.0 - Procesamiento finalizado (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/21 21:57:03 - dia_key.0 - Procesamiento finalizado (I=5, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 21:57:03 - subcat not null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:03 - subcategoria_key = 0.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:57:03 - subcategoria_key.0 - Procesamiento finalizado (I=4, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 21:57:03 - Select values 2.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:03 - gastos_fact.0 - Procesamiento finalizado (I=0, O=6, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:03 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 21:57:03 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 21:57:03 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 21:57:03 - main - Starting entry [facts_merge]
+2021/12/21 21:57:03 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 21:57:03 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 21:57:03 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 21:57:03 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:57:03 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 21:57:04 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:04 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:57:04 - gastos_fact_staging.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 21:57:04 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:04 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=6, R=6, W=6, U=0, E=0)
+2021/12/21 21:57:04 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 21:57:04 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 21:57:04 - main - Finished job entry [facts] (result=[true])
+2021/12/21 21:57:04 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 21:57:04 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 21:57:04 - main - Job execution finished
+2021/12/21 21:57:04 - Kitchen - Finished!
+2021/12/21 21:57:04 - Kitchen - Start=2021/12/21 21:57:01.341, Stop=2021/12/21 21:57:04.375
+2021/12/21 21:57:04 - Kitchen - Processing ended after 3 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:58:18,221 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:58:24,488 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:58:27 - Kitchen - Start of run.
+21:58:35,391 INFO  [DriverManager] Installing driver kars.
+21:58:35,393 INFO  [DriverManager] 0 drivers will be installed.
+21:58:35,394 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 21:58:42 - main - Start of job execution
+2021/12/21 21:58:42 - main - Starting entry [dimensions]
+2021/12/21 21:58:42 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 21:58:42 - dimensions - Starting entry [dia]
+2021/12/21 21:58:42 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 21:58:42 - dimensions - Starting entry [subcategoria]
+2021/12/21 21:58:42 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 21:58:42 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 21:58:42 - dia - Using run configuration [Pentaho local]
+2021/12/21 21:58:42 - dia - Running transformation using the Kettle execution engine
+2021/12/21 21:58:42 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 21:58:42 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 21:58:42 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 21:58:43 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:58:43 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:58:43 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:43 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:43 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:58:43 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 21:58:43 - main - Starting entry [dimensions_merge]
+2021/12/21 21:58:43 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 21:58:43 - merge - Starting entry [dia_merge]
+2021/12/21 21:58:43 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 21:58:43 - merge - Starting entry [subcategoria_merge]
+2021/12/21 21:58:43 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 21:58:43 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 21:58:43 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 21:58:43 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:58:43 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:58:43 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 21:58:43 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 21:58:43 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:43 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:58:43 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:43 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:43 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:43 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 21:58:43 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:58:43 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:58:43 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:58:43 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 21:58:43 - main - Starting entry [facts]
+2021/12/21 21:58:43 - facts - Using run configuration [Pentaho local]
+2021/12/21 21:58:43 - facts - Starting entry [gastos_fact]
+2021/12/21 21:58:43 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 21:58:43 - gastos_fact - Starting entry [clean values]
+2021/12/21 21:58:43 - clean values - Using run configuration [Pentaho local]
+2021/12/21 21:58:43 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 21:58:43 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 21:58:44 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:44 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 21:58:44 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 21:58:44 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 21:58:44 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 21:58:44 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 21:58:44 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:44 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 21:58:44 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 21:58:44 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 21:58:44 - main - Starting entry [facts_merge]
+2021/12/21 21:58:44 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 21:58:44 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 21:58:44 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 21:58:44 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 21:58:44 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 21:58:44 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:44 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 21:58:45 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 21:58:45 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 21:58:45 - main - Finished job entry [facts] (result=[true])
+2021/12/21 21:58:45 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 21:58:45 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 21:58:45 - main - Job execution finished
+2021/12/21 21:58:45 - Kitchen - Finished!
+2021/12/21 21:58:45 - Kitchen - Start=2021/12/21 21:58:42.193, Stop=2021/12/21 21:58:45.020
+2021/12/21 21:58:45 - Kitchen - Processing ended after 2 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+21:59:39,087 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+21:59:45,396 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 21:59:48 - Kitchen - Start of run.
+21:59:56,545 INFO  [DriverManager] Installing driver kars.
+21:59:56,547 INFO  [DriverManager] 0 drivers will be installed.
+21:59:56,548 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 22:00:03 - main - Start of job execution
+2021/12/21 22:00:03 - main - Starting entry [dimensions]
+2021/12/21 22:00:03 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 22:00:03 - dimensions - Starting entry [dia]
+2021/12/21 22:00:03 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 22:00:03 - dimensions - Starting entry [subcategoria]
+2021/12/21 22:00:03 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 22:00:04 - dia - Using run configuration [Pentaho local]
+2021/12/21 22:00:04 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 22:00:04 - dia - Running transformation using the Kettle execution engine
+2021/12/21 22:00:04 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 22:00:04 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 22:00:04 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 22:00:04 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 22:00:04 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 22:00:04 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:04 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:04 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 22:00:04 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 22:00:04 - main - Starting entry [dimensions_merge]
+2021/12/21 22:00:04 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:04 - merge - Starting entry [dia_merge]
+2021/12/21 22:00:04 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 22:00:04 - merge - Starting entry [subcategoria_merge]
+2021/12/21 22:00:04 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 22:00:04 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:04 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 22:00:04 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 22:00:04 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:04 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 22:00:04 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 22:00:05 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:05 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 22:00:05 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:05 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:05 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 22:00:05 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:05 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 22:00:05 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 22:00:05 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 22:00:05 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 22:00:05 - main - Starting entry [facts]
+2021/12/21 22:00:05 - facts - Using run configuration [Pentaho local]
+2021/12/21 22:00:05 - facts - Starting entry [gastos_fact]
+2021/12/21 22:00:05 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 22:00:05 - gastos_fact - Starting entry [clean values]
+2021/12/21 22:00:05 - clean values - Using run configuration [Pentaho local]
+2021/12/21 22:00:05 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 22:00:05 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 22:00:05 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:05 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 22:00:06 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 22:00:06 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 22:00:06 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 22:00:06 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 22:00:06 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:06 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 22:00:06 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 22:00:06 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 22:00:06 - main - Starting entry [facts_merge]
+2021/12/21 22:00:06 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:06 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 22:00:06 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:06 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 22:00:06 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 22:00:06 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:06 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:06 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 22:00:06 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 22:00:06 - main - Finished job entry [facts] (result=[true])
+2021/12/21 22:00:06 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 22:00:06 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 22:00:06 - main - Job execution finished
+2021/12/21 22:00:06 - Kitchen - Finished!
+2021/12/21 22:00:06 - Kitchen - Start=2021/12/21 22:00:03.807, Stop=2021/12/21 22:00:06.824
+2021/12/21 22:00:06 - Kitchen - Processing ended after 3 seconds.
+
+(test_env) C:\Users\Carlos\Proyectos\gastos\test>call Kitchen.bat /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65\
+DEBUG: _PENTAHO_JAVA=C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe
+
+(test_env) C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration>"C:\Program Files\Java\jdk1.8.0_65\\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64;/bin" "-Djava.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_65\\jre\lib\endorsed;C:\Program Files\Java\jdk1.8.0_65\\lib\endorsed;C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-290\data-integration\system\karaf\lib\endorsed" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\launcher.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen -initialDir "C:\Users\Carlos\Proyectos\gastos\test"\ /file:C:/Users/Carlos/Proyectos/gastos/etl/main.kjb 
+22:00:14,564 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+22:00:20,863 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\Users\Carlos\Programas\pdi-ce-9.2.0.0-29 ***
+***   0\data-integration\.\system\karaf\caches\kitchen\data-1               ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+2021/12/21 22:00:23 - Kitchen - Start of run.
+22:00:32,497 INFO  [DriverManager] Installing driver kars.
+22:00:32,500 INFO  [DriverManager] 0 drivers will be installed.
+22:00:32,501 INFO  [DriverManager] Finished installing drivers kars.
+2021/12/21 22:00:41 - main - Start of job execution
+2021/12/21 22:00:41 - main - Starting entry [dimensions]
+2021/12/21 22:00:41 - dimensions - Using run configuration [Pentaho local]
+2021/12/21 22:00:41 - dimensions - Starting entry [dia]
+2021/12/21 22:00:41 - dimensions - Launched job entry [dia] in parallel.
+2021/12/21 22:00:41 - dimensions - Starting entry [subcategoria]
+2021/12/21 22:00:41 - dimensions - Launched job entry [subcategoria] in parallel.
+2021/12/21 22:00:41 - subcategoria - Using run configuration [Pentaho local]
+2021/12/21 22:00:41 - dia - Using run configuration [Pentaho local]
+2021/12/21 22:00:41 - dia - Running transformation using the Kettle execution engine
+2021/12/21 22:00:41 - subcategoria - Running transformation using the Kettle execution engine
+2021/12/21 22:00:41 - subcategoria - Iniciado despacho de la transformaci?n [subcategoria]
+2021/12/21 22:00:41 - dia - Iniciado despacho de la transformaci?n [dia]
+2021/12/21 22:00:42 - Table output.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 22:00:42 - dia.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 22:00:42 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:42 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:42 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:42 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 22:00:42 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 22:00:42 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:42 - Filter null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=5, U=0, E=0)
+2021/12/21 22:00:42 - Filter rows.0 - Procesamiento finalizado (I=0, O=0, R=6, W=4, U=0, E=0)
+2021/12/21 22:00:42 - Sort rows.0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 22:00:42 - String operations.0 - Procesamiento finalizado (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 22:00:42 - Unique rows.0 - Procesamiento finalizado (I=0, O=0, R=5, W=3, U=0, E=0)
+2021/12/21 22:00:42 - Sort rows.0 - Procesamiento finalizado (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 22:00:42 - Calculator.0 - Procesamiento finalizado (I=0, O=0, R=3, W=3, U=0, E=0)
+2021/12/21 22:00:42 - Unique rows.0 - Procesamiento finalizado (I=0, O=0, R=4, W=3, U=0, E=0)
+2021/12/21 22:00:42 - Table output.0 - Procesamiento finalizado (I=0, O=3, R=3, W=3, U=0, E=0)
+2021/12/21 22:00:42 - dia.0 - Procesamiento finalizado (I=0, O=3, R=3, W=3, U=0, E=0)
+2021/12/21 22:00:42 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 22:00:42 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2021/12/21 22:00:42 - main - Starting entry [dimensions_merge]
+2021/12/21 22:00:42 - dimensions_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:42 - merge - Starting entry [dia_merge]
+2021/12/21 22:00:42 - merge - Launched job entry [dia_merge] in parallel.
+2021/12/21 22:00:42 - merge - Starting entry [subcategoria_merge]
+2021/12/21 22:00:42 - merge - Launched job entry [subcategoria_merge] in parallel.
+2021/12/21 22:00:42 - dia_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:42 - dia_merge - Running transformation using the Kettle execution engine
+2021/12/21 22:00:42 - dia_merge - Iniciado despacho de la transformaci?n [dia_merge]
+2021/12/21 22:00:42 - subcategoria_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:42 - subcategoria_merge - Running transformation using the Kettle execution engine
+2021/12/21 22:00:42 - subcategoria_merge - Iniciado despacho de la transformaci?n [subcategoria_merge]
+2021/12/21 22:00:42 - subcategoria_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:42 - subcategoria_staging.0 - Procesamiento finalizado (I=3, O=0, R=0, W=3, U=0, E=0)
+2021/12/21 22:00:42 - dia_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:42 - dia_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 22:00:42 - subcategoria_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:42 - dia_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:42 - subcategoria_public.0 - Procesamiento finalizado (I=2, O=0, R=0, W=2, U=0, E=0)
+2021/12/21 22:00:42 - dia_staging.0 - Procesamiento finalizado (I=3, O=0, R=0, W=3, U=0, E=0)
+2021/12/21 22:00:43 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 22:00:43 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 22:00:43 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=3, R=5, W=5, U=0, E=0)
+2021/12/21 22:00:43 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=3, R=5, W=5, U=0, E=0)
+2021/12/21 22:00:43 - main - Starting entry [facts]
+2021/12/21 22:00:43 - facts - Using run configuration [Pentaho local]
+2021/12/21 22:00:43 - facts - Starting entry [gastos_fact]
+2021/12/21 22:00:43 - gastos_fact - Using run configuration [Pentaho local]
+2021/12/21 22:00:43 - gastos_fact - Starting entry [clean values]
+2021/12/21 22:00:43 - clean values - Using run configuration [Pentaho local]
+2021/12/21 22:00:43 - clean values - Running transformation using the Kettle execution engine
+2021/12/21 22:00:43 - clean_values - Iniciado despacho de la transformaci?n [clean_values]
+2021/12/21 22:00:43 - movimientos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:43 - movimientos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=18, U=0, E=0)
+2021/12/21 22:00:43 - MANSO Y RIVA, SL.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 22:00:43 - El VALLE.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 22:00:43 - MANSO Y RIVA, SL 2.0 - Procesamiento finalizado (I=0, O=0, R=6, W=0, U=0, E=0)
+2021/12/21 22:00:43 - gastos_fact - Starting entry [gastos_dimensionlize]
+2021/12/21 22:00:43 - gastos_dimensionlize - Using run configuration [Pentaho local]
+2021/12/21 22:00:43 - gastos_dimensionlize - Running transformation using the Kettle execution engine
+2021/12/21 22:00:43 - gastos_dimensioanlize - Iniciado despacho de la transformaci?n [gastos_dimensioanlize]
+2021/12/21 22:00:43 - gastos_fact.0 - Connected to database [postgres gastos] (commit=1000)
+2021/12/21 22:00:43 - gastos.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:43 - gastos.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 22:00:43 - Select values.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:43 - fecha not null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:43 - dia_key = 0.0 - Procesamiento finalizado (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/21 22:00:43 - dia_key.0 - Procesamiento finalizado (I=5, O=0, R=5, W=5, U=0, E=0)
+2021/12/21 22:00:43 - subcat not null.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:43 - subcategoria_key = 0.0 - Procesamiento finalizado (I=0, O=0, R=2, W=2, U=0, E=0)
+2021/12/21 22:00:43 - subcategoria_key.0 - Procesamiento finalizado (I=4, O=0, R=4, W=4, U=0, E=0)
+2021/12/21 22:00:43 - Select values 2.0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:43 - gastos_fact.0 - Procesamiento finalizado (I=0, O=6, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:43 - gastos_fact - Finished job entry [gastos_dimensionlize] (result=[true])
+2021/12/21 22:00:43 - gastos_fact - Finished job entry [clean values] (result=[true])
+2021/12/21 22:00:43 - facts - Finished job entry [gastos_fact] (result=[true])
+2021/12/21 22:00:43 - main - Starting entry [facts_merge]
+2021/12/21 22:00:43 - facts_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:43 - facts_merge - Starting entry [gastos_merge]
+2021/12/21 22:00:43 - gastos_merge - Using run configuration [Pentaho local]
+2021/12/21 22:00:43 - gastos_merge - Running transformation using the Kettle execution engine
+2021/12/21 22:00:43 - gastos_merge - Iniciado despacho de la transformaci?n [gastos_merge]
+2021/12/21 22:00:43 - gastos_fact_public.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:43 - gastos_fact_staging.0 - !TableInput.Log.FinishedReadingQuery!
+2021/12/21 22:00:43 - gastos_fact_staging.0 - Procesamiento finalizado (I=6, O=0, R=0, W=6, U=0, E=0)
+2021/12/21 22:00:44 - Merge rows (diff).0 - Procesamiento finalizado (I=0, O=0, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:44 - Synchronize after merge.0 - Procesamiento finalizado (I=0, O=6, R=6, W=6, U=0, E=0)
+2021/12/21 22:00:44 - facts_merge - Finished job entry [gastos_merge] (result=[true])
+2021/12/21 22:00:44 - main - Finished job entry [facts_merge] (result=[true])
+2021/12/21 22:00:44 - main - Finished job entry [facts] (result=[true])
+2021/12/21 22:00:44 - main - Finished job entry [dimensions_merge] (result=[true])
+2021/12/21 22:00:44 - main - Finished job entry [dimensions] (result=[true])
+2021/12/21 22:00:44 - main - Job execution finished
+2021/12/21 22:00:44 - Kitchen - Finished!
+2021/12/21 22:00:44 - Kitchen - Start=2021/12/21 22:00:41.119, Stop=2021/12/21 22:00:44.270
+2021/12/21 22:00:44 - Kitchen - Processing ended after 3 seconds.

@@ -1,4 +1,5 @@
 import os
+from typing import List
 import pandas as pd
 from DbConnection import DbConnection
 
@@ -31,21 +32,18 @@ def test_empty():
 
     run_etl()
 
-    query = '''
-    select count(*) as cuenta from staging.subcategoria, staging.dia, staging.gastos_fact;
-    '''
+    query = "select count(*) as cuenta from staging.subcategoria, staging.dia, staging.gastos_fact;"
+
     df_result = dbConn.exec_query(query)
 
-    if df_result.iloc[0].cuenta==0:
-        resultado = "OK"
-    else:
-        resultado = "KO"
+    resultado = "OK" if df_result.iloc[0].cuenta==0 else "KO"
     
     return resultado
 
 def test_normal_run():
 
     dbConn = DbConnection()
+    resultado = []
 
     script  = '''
     insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-1000, -500, '2021-01-02', 'CAT1', 'SUBCAT1');
@@ -60,15 +58,14 @@ def test_normal_run():
 
     run_etl()
 
-    query = '''
-    select sum(importe) as suma from staging.movimientos;
-    '''
-    df_result = dbConn.exec_query(query)
+    df_result = dbConn.exec_query("select sum(importe) as suma from staging.movimientos;")
 
-    if df_result.iloc[0].suma==-23000:
-        resultado = "OK"
-    else:
-        resultado = "KO"
+    resultado.append("OK" if (df_result.iloc[0].suma==-23000) else "KO")
+
+    df_result = dbConn.exec_query("select subcategoria from public.subcategoria;")
+
+    resultado.append("OK" if (df_result.subcategoria.str.strip()\
+        .isin(["UNKNOWN", "INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4"]).all()) else "KO")
     
     return resultado
 
@@ -78,12 +75,12 @@ def run_etl():
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel
 
+    resultado = []
+
     initDB()
 
-    resultado = test_empty()
+    resultado.append(test_empty())
 
-    print(resultado)
-
-    resultado = test_normal_run()
+    resultado.append(test_normal_run())
 
     print(resultado)
