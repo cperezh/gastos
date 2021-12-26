@@ -79,7 +79,7 @@ def test_normal_run():
     return resultado
 
 def run_etl():
-    os.system("..\\etl\\run_full C:/Users/Carlos/Proyectos/gastos/etl >> salida.log")
+    os.system("..\\etl\\run_full C:/Users/Carlos/Proyectos/gastos/etl Movements.csv")
 
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel

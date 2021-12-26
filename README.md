@@ -15,14 +15,10 @@
 
 ## RUN
 
-- Run ```run_full.bat``` to process movements on file ```/in/Movements.csv``` and load DWH
-- Run ```run_dwh.bat``` to load DWH with movements in stating (for testing purpose)
+- Run ```run_full.bat``` to process movements on file and load DWH
+- By default run this command: ```run_full <local_dir>/gastos/etl Movements.csv```. The first parameter is the route to etl folder 
+in the project and the second parameter is the file with the new movements. We will use a different file for testing purposes
 
-## Extra - Load in parts
-			   
-- Run ```movimientos.ktr``` to load new Movements onto staging area
-
-- Run ```main.kjb``` after loading new movements in staging to update public analysis model (DWH)
 
 ## Fichero de datos
 - ```/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
@@ -69,3 +65,4 @@
 1. Run CMD
 2. Navigate to **test** folder
 3. Run ```python -m venv test_env```
+4. @**test** folder, run ```pip install -r requirements.txt``
