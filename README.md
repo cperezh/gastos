@@ -7,6 +7,12 @@
 
 # ETL
 
+## Design
+
+1. Load Staging
+2. Load Enterprise DWH
+3. Load Datamarts
+
 ## RUN
 
 - Run ```run_full.bat``` to process movements on file ```/in/Movements.csv``` and load DWH

@@ -61,7 +61,7 @@ def test_normal_run():
     df_result = dbConn.exec_query("select sum(importe) as suma from staging.movimientos;")
 
     resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-23000) \
-        else " test_normal_run 2 KO")
+        else " test_normal_run 1 KO")
 
     df_result = dbConn.exec_query("select subcategoria from public.subcategoria;")
 
@@ -79,7 +79,7 @@ def test_normal_run():
     return resultado
 
 def run_etl():
-    os.system("..\\etl\\run_dwh C:/Users/Carlos/Proyectos/gastos/etl >> salida.log")
+    os.system("..\\etl\\run_full C:/Users/Carlos/Proyectos/gastos/etl >> salida.log")
 
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel

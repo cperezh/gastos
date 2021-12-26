@@ -1,1 +1,0 @@
-call Kitchen.bat /file:%1/main.kjb /level:Basic
