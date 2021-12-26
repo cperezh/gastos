@@ -1,1 +1,1 @@
-call Kitchen.bat /file:%1/main.kjb
+call Kitchen.bat /file:%1/main.kjb /param:fcsv=C:\Users\Carlos\Proyectos\gastos\etl\in\Movements.csv
