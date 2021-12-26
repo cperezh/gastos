@@ -36,7 +36,7 @@ def test_empty():
 
     df_result = dbConn.exec_query(query)
 
-    resultado = "OK" if df_result.iloc[0].cuenta==0 else "KO"
+    resultado = "test_empty OK" if df_result.iloc[0].cuenta==0 else "test_empty KO"
     
     return resultado
 
@@ -60,12 +60,21 @@ def test_normal_run():
 
     df_result = dbConn.exec_query("select sum(importe) as suma from staging.movimientos;")
 
-    resultado.append("OK" if (df_result.iloc[0].suma==-23000) else "KO")
+    resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-23000) \
+        else " test_normal_run 2 KO")
 
     df_result = dbConn.exec_query("select subcategoria from public.subcategoria;")
 
-    resultado.append("OK" if (df_result.subcategoria.str.strip()\
-        .isin(["UNKNOWN", "INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4"]).all()) else "KO")
+    resultado.append("test_normal_run 2 OK" if (df_result.subcategoria.str.strip()\
+        .isin(["UNKNOWN", "INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4"]).all()) \
+            else "test_normal_run 2 KO")
+    
+    
+    df_result = dbConn.exec_query("select fecha from public.dia;")
+
+    resultado.append("test_normal_run 3 OK" if (df_result.fecha.astype(str).str.strip()\
+        .isin(["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01"]).all()) \
+            else "test_normal_run 3 KO")
     
     return resultado
 
@@ -77,9 +86,9 @@ if __name__=="__main__":
 
     resultado = []
 
-    initDB()
+    # initDB()
 
-    resultado.append(test_empty())
+    # resultado.append(test_empty())
 
     resultado.append(test_normal_run())
 

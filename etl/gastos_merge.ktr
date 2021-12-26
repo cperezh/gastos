@@ -584,6 +584,11 @@
         <name2/>
       </key>
       <value>
+        <name>flagfield</name>
+        <rename>flagfield</rename>
+        <update>N</update>
+      </value>
+      <value>
         <name>importe</name>
         <rename>importe</rename>
         <update>N</update>
