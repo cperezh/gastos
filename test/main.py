@@ -45,22 +45,11 @@ def test_normal_run():
     dbConn = DbConnection()
     resultado = []
 
-    script  = '''
-    insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-1000, -500, '2021-01-02', 'CAT1', 'SUBCAT1');
-    insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-2000, -1500, '2021-01-03', 'CAT2', 'SUBCAT2');
-    insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-3000, -2500, '2021-01-02', 'CAT1', 'SUBCAT1');
-    insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-4000, -3500, NULL, 'CAT4', 'SUBCAT4');
-    insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-6000, -5500, '2021-06-01', NULL, 'SUBCAT6');
-    insert into staging.movimientos(importe, saldo, fvalor, categoria, subcategoria) values (-7000, -6500, '2021-06-01', 'CAT7', NULL);
-    '''
+    run_etl("Movevents_normal_run.csv")
 
-    dbConn.exec_script(script)
+    df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
 
-    run_etl()
-
-    df_result = dbConn.exec_query("select sum(importe) as suma from staging.movimientos;")
-
-    resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-23000) \
+    resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-20000) \
         else " test_normal_run 1 KO")
 
     df_result = dbConn.exec_query("select subcategoria from public.subcategoria;")
@@ -78,15 +67,15 @@ def test_normal_run():
     
     return resultado
 
-def run_etl():
-    os.system("..\\etl\\run_full C:/Users/Carlos/Proyectos/gastos/etl Movements.csv")
+def run_etl(movements_file:str):
+    os.system("..\\etl\\run_full C:/Users/Carlos/Proyectos/gastos/etl "+movements_file)
 
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel
 
     resultado = []
 
-    # initDB()
+    initDB()
 
     # resultado.append(test_empty())
 
