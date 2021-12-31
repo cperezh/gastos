@@ -42,10 +42,18 @@ def test_empty():
 
 def test_normal_run():
 
-    dbConn = DbConnection()
     resultado = []
 
     run_etl("Movevents_normal_run.csv")
+
+    resultado = check_normal_run_result()
+
+    return resultado
+
+def check_normal_run_result():
+
+    dbConn = DbConnection()
+    resultado = []
 
     df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
 
@@ -57,7 +65,6 @@ def test_normal_run():
     resultado.append("test_normal_run 2 OK" if (df_result.subcategoria.str.strip()\
         .isin(["UNKNOWN", "INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4"]).all()) \
             else "test_normal_run 2 KO")
-    
     
     df_result = dbConn.exec_query("select fecha from public.dia;")
 
@@ -79,6 +86,9 @@ if __name__=="__main__":
 
     # resultado.append(test_empty())
 
+    resultado.append(test_normal_run())
+
+    # Segundo ejecución para comprobar que no duplica
     resultado.append(test_normal_run())
 
     print(resultado)

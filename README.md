@@ -21,8 +21,8 @@ in the project and the second parameter is the file with the new movements. We w
 
 
 ## Fichero de datos
-- ```/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
-
+- ```/staging/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
+- ```/staging/in/Movements - all.csv```: Fichero backup con todos los movimientos
 
 # DOC
 - File ```doc/dimensional.drawio```
@@ -66,3 +66,4 @@ in the project and the second parameter is the file with the new movements. We w
 2. Navigate to **test** folder
 3. Run ```python -m venv test_env```
 4. @**test** folder, run ```pip install -r requirements.txt``
+5. Run ```main.py```
