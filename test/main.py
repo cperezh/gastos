@@ -16,7 +16,6 @@ def initDB():
     delete from public.subcategoria;
     delete from public.dia;
     insert into public.dia(dia_key, dia, mes, anio, fecha) values(0, 0, 0, 0,' 1900-01-01');
-    insert into public.dia(dia_key, dia, mes, anio, fecha) values(-1,-1, -1, -1, '1900-01-01'); 
     insert into public.subcategoria(subcategoria_key, subcategoria, categoria) values(0,'UNKNOWN','UNKNOWN');
     insert into public.subcategoria(subcategoria_key, subcategoria, categoria) values(-1,'INVALID','INVALID');
     '''
@@ -42,34 +41,26 @@ def test_empty():
 
 def test_normal_run():
 
-    resultado = []
-
-    run_etl("Movevents_normal_run.csv")
-
-    resultado = check_normal_run_result()
-
-    return resultado
-
-def check_normal_run_result():
-
     dbConn = DbConnection()
     resultado = []
+
+    #run_etl("Movevents_normal_run.csv")
 
     df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
 
     resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-20000) \
         else " test_normal_run 1 KO")
 
-    df_result = dbConn.exec_query("select subcategoria from public.subcategoria;")
+    df_result = dbConn.exec_query("select subcategoria from public.subcategoria order by 1;")
 
-    resultado.append("test_normal_run 2 OK" if (df_result.subcategoria.str.strip()\
-        .isin(["UNKNOWN", "INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4"]).all()) \
+    resultado.append("test_normal_run 2 OK" if (df_result.subcategoria.str.strip().tolist()\
+        ==["INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4","UNKNOWN"]) \
             else "test_normal_run 2 KO")
     
-    df_result = dbConn.exec_query("select fecha from public.dia;")
+    df_result = dbConn.exec_query("select fecha from public.dia order by 1;")
 
-    resultado.append("test_normal_run 3 OK" if (df_result.fecha.astype(str).str.strip()\
-        .isin(["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01"]).all()) \
+    resultado.append("test_normal_run 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
+        ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01"]) \
             else "test_normal_run 3 KO")
     
     return resultado
@@ -82,13 +73,13 @@ if __name__=="__main__":
 
     resultado = []
 
-    initDB()
+    #initDB()
 
     # resultado.append(test_empty())
 
     resultado.append(test_normal_run())
 
     # Segundo ejecución para comprobar que no duplica
-    resultado.append(test_normal_run())
+    #resultado.append(test_normal_run())
 
     print(resultado)
