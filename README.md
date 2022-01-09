@@ -9,9 +9,9 @@
 
 ## Design
 
-1. Load Staging
-2. Load Enterprise DWH
-3. Load Datamarts
+1. Load Staging: load new movements on staging area
+2. Load Enterprise DWH (edw): repository of historic information. E/R model
+3. Load Datamarts (dtm): dimensional model for BI
 
 ## RUN
 
@@ -57,10 +57,6 @@ in the project and the second parameter is the file with the new movements. We w
 4. Run ```inserts.sql```
 
 ## Testing
-
-1. Run ```test.sql``` step by step. After each step, run 
-
-# Testing
 
 1. Run CMD
 2. Navigate to **test** folder
