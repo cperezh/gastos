@@ -89,6 +89,32 @@ def test_new_movement():
     
     return resultado
 
+def test_change_movement():
+
+    dbConn = DbConnection()
+    resultado = []
+
+    ETLRunner().run_etl("test_Movevents_change_mov.csv")
+
+    df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
+
+    resultado.append(" test_change_movement 1 OK" if (df_result.iloc[0].suma==-28000) \
+        else " test_change_movement 1 KO")
+    
+    df_result = dbConn.exec_query("select subcategoria from public.subcategoria order by 1;")
+
+    resultado.append("test_change_movement 2 OK" if (df_result.subcategoria.str.strip().tolist()\
+        ==["INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4", "SUBCAT8_CAMBIO", "UNKNOWN"]) \
+            else "test_change_movement 2 KO")
+    
+    df_result = dbConn.exec_query("select fecha from public.dia order by 1;")
+
+    resultado.append("test_change_movement 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
+        ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01", "2021-07-01"]) \
+            else "test_change_movement 3 KO")
+    
+    return resultado
+
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel
 
@@ -105,4 +131,6 @@ if __name__=="__main__":
 
     resultado.append(test_new_movement())
 
+    resultado.append(test_change_movement())
+    
     print(resultado)
