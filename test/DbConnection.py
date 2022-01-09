@@ -5,7 +5,7 @@ from DbConnector import DbConnector
 class DbConnection:
     '''
     This is class is usefull to execute querys to db. 
-    Uses Singleton patter for db connection, ony 1 connection
+    Uses Singleton pattern for db connection, ony 1 connection
     '''
 
     connector = DbConnector()

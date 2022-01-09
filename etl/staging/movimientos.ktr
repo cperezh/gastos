@@ -545,7 +545,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/in/${FCSV}</filename>
+    <filename>${FCSV}</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>

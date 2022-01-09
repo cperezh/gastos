@@ -2,6 +2,7 @@ import os
 from typing import List
 import pandas as pd
 from DbConnection import DbConnection
+from ETLRunner import ETLRunner
 
 def initDB():
 
@@ -23,17 +24,14 @@ def initDB():
     dbConn.exec_script(script)
 
 def test_empty():
-    '''
-    Primera prueba: Gasto vacia, no inserta nada en las dimensiones
-    '''
 
-    dbConn = DbConnection()
+    '''Primera prueba: Gasto vacia, no inserta nada en las dimensiones'''
 
-    run_etl()
+    ETLRunner().run_etl("Movements_empty.csv")
 
-    query = "select count(*) as cuenta from staging.subcategoria, staging.dia, staging.gastos_fact;"
+    query = "select count(*) as cuenta from public.subcategoria, public.dia, public.gastos_fact;"
 
-    df_result = dbConn.exec_query(query)
+    df_result = DbConnection().exec_query(query)
 
     resultado = "test_empty OK" if df_result.iloc[0].cuenta==0 else "test_empty KO"
     
@@ -44,7 +42,7 @@ def test_normal_run():
     dbConn = DbConnection()
     resultado = []
 
-    #run_etl("Movevents_normal_run.csv")
+    ETLRunner().run_etl("Movevents_normal_run.csv")
 
     df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
 
@@ -65,21 +63,18 @@ def test_normal_run():
     
     return resultado
 
-def run_etl(movements_file:str):
-    os.system("..\\etl\\run_full C:/Users/Carlos/Proyectos/gastos/etl "+movements_file)
-
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel
 
     resultado = []
 
-    #initDB()
+    initDB()
 
-    # resultado.append(test_empty())
+    resultado.append(test_empty())
 
     resultado.append(test_normal_run())
 
     # Segundo ejecución para comprobar que no duplica
-    #resultado.append(test_normal_run())
+    resultado.append(test_normal_run())
 
     print(resultado)
