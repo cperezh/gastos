@@ -27,7 +27,7 @@ def test_empty():
 
     '''Primera prueba: Gasto vacia, no inserta nada en las dimensiones'''
 
-    ETLRunner().run_etl("Movements_empty.csv")
+    ETLRunner().run_etl("test_Movements_empty.csv")
 
     query = "select count(*) as cuenta from public.subcategoria, public.dia, public.gastos_fact;"
 
@@ -42,7 +42,7 @@ def test_normal_run():
     dbConn = DbConnection()
     resultado = []
 
-    ETLRunner().run_etl("Movevents_normal_run.csv")
+    ETLRunner().run_etl("test_Movevents_normal_run.csv")
 
     df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
 
@@ -63,6 +63,32 @@ def test_normal_run():
     
     return resultado
 
+def test_new_movement():
+
+    dbConn = DbConnection()
+    resultado = []
+
+    ETLRunner().run_etl("test_Movevents_new_mov.csv")
+
+    df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
+
+    resultado.append(" test_new_movement 1 OK" if (df_result.iloc[0].suma==-28000) \
+        else " test_new_movement 1 KO")
+    
+    df_result = dbConn.exec_query("select subcategoria from public.subcategoria order by 1;")
+
+    resultado.append("test_new_movement 2 OK" if (df_result.subcategoria.str.strip().tolist()\
+        ==["INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4", "SUBCAT8", "UNKNOWN"]) \
+            else "test_new_movement 2 KO")
+    
+    df_result = dbConn.exec_query("select fecha from public.dia order by 1;")
+
+    resultado.append("test_new_movement 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
+        ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01", "2021-07-01"]) \
+            else "test_new_movement 3 KO")
+    
+    return resultado
+
 if __name__=="__main__":
     # Este código lo hice con mi hijo Manuel
 
@@ -70,11 +96,13 @@ if __name__=="__main__":
 
     initDB()
 
-    resultado.append(test_empty())
+    # resultado.append(test_empty())
 
     resultado.append(test_normal_run())
 
     # Segundo ejecución para comprobar que no duplica
-    resultado.append(test_normal_run())
+    # resultado.append(test_normal_run())
+
+    resultado.append(test_new_movement())
 
     print(resultado)
