@@ -9,18 +9,32 @@
 
 ## Design
 
-1. Load Staging: load new movements on staging area
-2. Load Enterprise DWH (edw): repository of historic information. E/R model
-3. Load Datamarts (dtm): dimensional model for BI
+The ETL is design based on DELTA data from operational. No elements are deleted from EDW nor DTM.
+
+The ETL Process is done in three steps:
+
+1. Load Staging: load new movements (DELTA) on staging area
+2. Load Enterprise DWH (edw): repository of historic information. E/R model. Movements from staging area
+are inserted or updated (based on fvalor, importe and saldo) into the EDW.
+3. Load Datamarts (dtm): dimensional model for BI. The process scans all the movemens in the EDW, compares it
+with the data in datamart (dims and facts) and inserts/update new data.
+
+![Screenshot](doc/ETL_Process.png)
+
+## TODO
+1. Delete staging area from dimensions and calculate on the fly from EDW. 
 
 ## RUN
 
 - Run ```run_full.bat``` to process movements on file and load DWH
-- By default run this command: ```run_full <local_dir>/gastos/etl Movements.csv```. The first parameter is the route to etl folder 
-in the project and the second parameter is the file with the new movements. We will use a different file for testing purposes
+It need two paremeters:
+	- The first parameter is the route to etl folder in the project 
+	- The second parameter is the file with the new movements (DELTA).
+
+```run_full <local_dir>/gastos/etl Movements.csv```
 
 
-## Fichero de datos
+### Fichero de datos
 - ```/staging/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
 - ```/staging/in/Movements - all.csv```: Fichero backup con todos los movimientos
 
