@@ -35,8 +35,8 @@ It need two paremeters:
 
 
 ### Fichero de datos
-- ```/staging/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
-- ```/staging/in/Movements - all.csv```: Fichero backup con todos los movimientos
+- ```/gastos/etl/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
+- ```/gastos/etl/in/Movements - all.csv```: Fichero backup con todos los movimientos
 
 # DOC
 - File ```doc/dimensional.drawio```

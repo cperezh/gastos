@@ -10,15 +10,13 @@ def initDB():
 
     script = '''
     truncate table staging.movimientos;
-    truncate table staging.subcategoria;
-    truncate table staging.dia;
-    truncate table staging.gastos_fact;
-    truncate table public.gastos_fact;
-    delete from public.subcategoria;
-    delete from public.dia;
-    insert into public.dia(dia_key, dia, mes, anio, fecha) values(0, 0, 0, 0,' 1900-01-01');
-    insert into public.subcategoria(subcategoria_key, subcategoria, categoria) values(0,'UNKNOWN','UNKNOWN');
-    insert into public.subcategoria(subcategoria_key, subcategoria, categoria) values(-1,'INVALID','INVALID');
+    truncate table edw.movimientos;
+    truncate table dtm.gastos_fact;
+    delete from dtm.subcategoria;
+    delete from dtm.dia;
+    insert into dtm.dia(dia_key, dia, mes, anio, fecha) values(0, 0, 0, 0,' 1900-01-01');
+    insert into dtm.subcategoria(subcategoria_key, subcategoria, categoria) values(0,'UNKNOWN','UNKNOWN');
+    insert into dtm.subcategoria(subcategoria_key, subcategoria, categoria) values(-1,'INVALID','INVALID');
     '''
 
     dbConn.exec_script(script)
@@ -29,7 +27,7 @@ def test_empty():
 
     ETLRunner().run_etl("test_Movements_empty.csv")
 
-    query = "select count(*) as cuenta from public.subcategoria, public.dia, public.gastos_fact;"
+    query = "select count(*) as cuenta from dtm.subcategoria, dtm.dia, dtm.gastos_fact;"
 
     df_result = DbConnection().exec_query(query)
 
@@ -44,18 +42,18 @@ def test_normal_run():
 
     ETLRunner().run_etl("test_Movevents_normal_run.csv")
 
-    df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
+    df_result = dbConn.exec_query("select sum(importe) as suma from dtm.gastos_fact;")
 
     resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-20000) \
         else " test_normal_run 1 KO")
 
-    df_result = dbConn.exec_query("select subcategoria from public.subcategoria order by 1;")
+    df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
 
     resultado.append("test_normal_run 2 OK" if (df_result.subcategoria.str.strip().tolist()\
         ==["INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4","UNKNOWN"]) \
             else "test_normal_run 2 KO")
     
-    df_result = dbConn.exec_query("select fecha from public.dia order by 1;")
+    df_result = dbConn.exec_query("select fecha from dtm.dia order by 1;")
 
     resultado.append("test_normal_run 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
         ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01"]) \
@@ -70,18 +68,18 @@ def test_new_movement():
 
     ETLRunner().run_etl("test_Movevents_new_mov.csv")
 
-    df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
+    df_result = dbConn.exec_query("select sum(importe) as suma from dtm.gastos_fact;")
 
     resultado.append(" test_new_movement 1 OK" if (df_result.iloc[0].suma==-28000) \
         else " test_new_movement 1 KO")
     
-    df_result = dbConn.exec_query("select subcategoria from public.subcategoria order by 1;")
+    df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
 
     resultado.append("test_new_movement 2 OK" if (df_result.subcategoria.str.strip().tolist()\
         ==["INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4", "SUBCAT8", "UNKNOWN"]) \
             else "test_new_movement 2 KO")
     
-    df_result = dbConn.exec_query("select fecha from public.dia order by 1;")
+    df_result = dbConn.exec_query("select fecha from dtm.dia order by 1;")
 
     resultado.append("test_new_movement 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
         ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01", "2021-07-01"]) \
@@ -96,18 +94,18 @@ def test_change_movement():
 
     ETLRunner().run_etl("test_Movevents_change_mov.csv")
 
-    df_result = dbConn.exec_query("select sum(importe) as suma from public.gastos_fact;")
+    df_result = dbConn.exec_query("select sum(importe) as suma from dtm.gastos_fact;")
 
     resultado.append(" test_change_movement 1 OK" if (df_result.iloc[0].suma==-28000) \
         else " test_change_movement 1 KO")
     
-    df_result = dbConn.exec_query("select subcategoria from public.subcategoria order by 1;")
+    df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
 
     resultado.append("test_change_movement 2 OK" if (df_result.subcategoria.str.strip().tolist()\
         ==["INVALID", "SUBCAT1", "SUBCAT2", "SUBCAT4", "SUBCAT8_CAMBIO", "UNKNOWN"]) \
             else "test_change_movement 2 KO")
     
-    df_result = dbConn.exec_query("select fecha from public.dia order by 1;")
+    df_result = dbConn.exec_query("select fecha from dtm.dia order by 1;")
 
     resultado.append("test_change_movement 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
         ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01", "2021-07-01"]) \
@@ -116,7 +114,7 @@ def test_change_movement():
     return resultado
 
 if __name__=="__main__":
-    # Este código lo hice con mi hijo Manuel
+    # Este programa lo hice con mi hijo Manuel
 
     resultado = []
 
@@ -127,10 +125,10 @@ if __name__=="__main__":
     resultado.append(test_normal_run())
 
     # Segundo ejecución para comprobar que no duplica
-    # resultado.append(test_normal_run())
+    resultado.append(test_normal_run())
 
-    resultado.append(test_new_movement())
+    # resultado.append(test_new_movement())
 
-    resultado.append(test_change_movement())
+    # resultado.append(test_change_movement())
     
     print(resultado)
