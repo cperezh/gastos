@@ -125,7 +125,7 @@ if __name__=="__main__":
     resultado.append(test_normal_run())
 
     # Segundo ejecución para comprobar que no duplica
-    resultado.append(test_normal_run())
+    # resultado.append(test_normal_run())
 
     # resultado.append(test_new_movement())
 
