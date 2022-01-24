@@ -26,6 +26,8 @@ with the data in datamart (dims and facts) and inserts/update new data.
 
 ## RUN
 
+### Batch mode
+
 - Run ```run_full.bat``` to process movements on file and load DWH
 It need two paremeters:
 	- The first parameter is the route to etl folder in the project 
@@ -33,6 +35,9 @@ It need two paremeters:
 
 ```run_full <local_dir>/gastos/etl Movements.csv```
 
+### Kettle
+- The main job is: ```gastos/etl/main.kjb```
+- It needs one parameter: **FCSV**: Absolute path to the movements file.
 
 ### Fichero de datos
 - ```/gastos/etl/in/Movements.csv```: Para añadir nuevos datos, descargar el fichero excel de ING, convertir en CSV y añadirlos a este fichero para cargarlos. No importa que hay duplicados, ya que se omiten.
