@@ -31,7 +31,7 @@ with the data in datamart (dims and facts) and inserts/update new data.
 - Run ```run_full.bat``` to process movements on file and load DWH
 It need two paremeters:
 	- The first parameter is the route to etl folder in the project 
-	- The second parameter is the file with the new movements (DELTA).
+	- The second parameter is the file with the new movements (DELTA). They are searched at ```/gastos/etl/in/```
 
 ```run_full <local_dir>/gastos/etl Movements.csv```
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>subcategoria</name>
+    <name>trim_dim</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/10/24 09:11:57.365</created_date>
+    <created_date>2022/02/05 12:24:49.516</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/10/24 09:11:57.365</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2022/02/05 12:24:49.516</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -489,259 +489,15 @@
   <order>
     <hop>
       <from>movimientos</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Filter rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge rows (diff)</from>
-      <to>Insert new</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>subcategoria dtm</from>
-      <to>Merge rows (diff)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
-      <to>Merge rows (diff)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows</from>
-      <to>Unique rows</to>
+      <to>String operations</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Unique rows</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>subcategoria</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>categoria</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert new</name>
-    <type>SynchronizeAfterMerge</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>postgres gastos</connection>
-    <commit>100</commit>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <use_batch>N</use_batch>
-    <perform_lookup>N</perform_lookup>
-    <operation_order_field>flagfield</operation_order_field>
-    <order_insert>new</order_insert>
-    <order_update/>
-    <order_delete/>
-    <lookup>
-      <schema>dtm</schema>
-      <table>subcategoria</table>
-      <key>
-        <name>subcategoria</name>
-        <field>subcategoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>categoria</name>
-        <field>categoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>subcategoria</name>
-        <rename>subcategoria</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>categoria</name>
-        <rename>categoria</rename>
-        <update>N</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge rows (diff)</name>
-    <type>MergeRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <keys>
-      <key>subcategoria</key>
-      <key>categoria</key>
-    </keys>
-    <values>
-      <value>subcategoria</value>
-      <value>categoria</value>
-    </values>
-    <flag_field>flagfield</flag_field>
-    <reference>subcategoria dtm</reference>
-    <compare>Unique rows</compare>
-    <compare>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>subcategoria</name>
-      </field>
-      <field>
-        <name>categoria</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>subcategoria</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>categoria</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>movimientos</name>
     <type>TableInput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -750,16 +506,13 @@
     </partitioning>
     <connection>postgres gastos</connection>
     <sql>SELECT
-  fvalor
-, categoria
-, subcategoria
-, descripcion
-, comentario
-, imagen
-, importe
-, saldo
+  	fvalor,
+	categoria,
+	subcategoria, 
+	descripcion, 
+	importe,
+	saldo
 FROM staging.movimientos
-order by subcategoria, categoria
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -861,52 +614,6 @@ order by subcategoria, categoria
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>comentario</name>
-        <length>2000</length>
-        <precision>-1</precision>
-        <origin>movimientos</origin>
-        <comments>comentario</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>imagen</name>
-        <length>100</length>
-        <precision>-1</precision>
-        <origin>movimientos</origin>
-        <comments>imagen</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
         <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>importe</name>
@@ -962,14 +669,14 @@ order by subcategoria, categoria
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>144</yloc>
+      <xloc>144</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>subcategoria dtm</name>
-    <type>TableInput</type>
+    <name>String operations</name>
+    <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -978,67 +685,34 @@ order by subcategoria, categoria
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>postgres gastos</connection>
-    <sql>SELECT
-  subcategoria
-, categoria
-FROM dtm.subcategoria
-order by subcategoria, categoria
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>subcategoria</name>
-        <length>200</length>
-        <precision>-1</precision>
-        <origin>subcategoria_public</origin>
-        <comments>subcategoria</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>categoria</name>
-        <length>200</length>
-        <precision>-1</precision>
-        <origin>subcategoria_public</origin>
-        <comments>categoria</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
+    <fields>
+      <field>
+        <in_stream_name>subcategoria</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper/>
+        <padding_type/>
+        <pad_char/>
+        <pad_len/>
+        <init_cap/>
+        <mask_xml/>
+        <digits/>
+        <remove_special_characters/>
+      </field>
+      <field>
+        <in_stream_name>categoria</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper/>
+        <padding_type/>
+        <pad_char/>
+        <pad_len/>
+        <init_cap/>
+        <mask_xml/>
+        <digits/>
+        <remove_special_characters/>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1048,8 +722,8 @@ order by subcategoria, categoria
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>32</yloc>
+      <xloc>272</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
