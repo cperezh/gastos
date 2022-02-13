@@ -44,7 +44,7 @@ def test_normal_run():
 
     df_result = dbConn.exec_query("select sum(importe) as suma from dtm.gastos_fact;")
 
-    resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==-16000) \
+    resultado.append(" test_normal_run 1 OK" if (df_result.iloc[0].suma==16000) \
         else " test_normal_run 1 KO")
 
     df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
@@ -70,7 +70,7 @@ def test_new_movement():
 
     df_result = dbConn.exec_query("select sum(importe) as suma from dtm.gastos_fact;")
 
-    resultado.append(" test_new_movement 1 OK" if (df_result.iloc[0].suma==-24000) \
+    resultado.append(" test_new_movement 1 OK" if (df_result.iloc[0].suma==24000) \
         else " test_new_movement 1 KO")
     
     df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
@@ -96,7 +96,7 @@ def test_change_movement():
 
     df_result = dbConn.exec_query("select sum(importe) as suma from dtm.gastos_fact;")
 
-    resultado.append(" test_change_movement 1 OK" if (df_result.iloc[0].suma==-24000) \
+    resultado.append(" test_change_movement 1 OK" if (df_result.iloc[0].suma==24000) \
         else " test_change_movement 1 KO")
     
     df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
@@ -118,17 +118,17 @@ if __name__=="__main__":
 
     resultado = []
 
-    # initDB()
+    initDB()
 
-    # resultado.append(test_empty())
+    resultado.append(test_empty())
 
-    # resultado.append(test_normal_run())
+    resultado.append(test_normal_run())
 
     # Segundo ejecución para comprobar que no duplica
-    # resultado.append(test_normal_run())
+    resultado.append(test_normal_run())
 
     resultado.append(test_new_movement())
 
-    # resultado.append(test_change_movement())
+    resultado.append(test_change_movement())
     
     print(resultado)

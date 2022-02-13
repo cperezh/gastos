@@ -140,13 +140,3 @@ ALTER TABLE ONLY dtm.subcategoria
 
 ALTER TABLE ONLY edw.movimientos
     ADD CONSTRAINT movimientos_pkey PRIMARY KEY (movimientos_key);
-
---------------------------------
------------ FKs ----------------
---------------------------------
-
-ALTER TABLE ONLY dtm.gastos_fact
-    ADD CONSTRAINT fk_dia FOREIGN KEY (dia_key) REFERENCES dtm.dia(dia_key) NOT VALID;
-
-ALTER TABLE ONLY dtm.gastos_fact
-    ADD CONSTRAINT fk_subcategoria FOREIGN KEY (subcategoria_key) REFERENCES dtm.subcategoria(subcategoria_key) NOT VALID;
