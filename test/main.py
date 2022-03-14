@@ -50,13 +50,13 @@ def test_normal_run():
     df_result = dbConn.exec_query("select subcategoria from dtm.subcategoria order by 1;")
 
     resultado.append("test_normal_run 2 OK" if (df_result.subcategoria.str.strip().tolist()\
-        ==["INVALID", "SUBCAT1", "SUBCAT2", "UNKNOWN"]) \
+        ==["SUBCAT1", "SUBCAT2", "UNKNOWN"]) \
             else "test_normal_run 2 KO")
     
     df_result = dbConn.exec_query("select fecha from dtm.dia order by 1;")
 
     resultado.append("test_normal_run 3 OK" if (df_result.fecha.astype(str).str.strip().tolist()\
-        ==["1900-01-01", "2021-01-02", "2021-01-03", "2021-06-01", "2021-07-01"]) \
+        ==["2021-01-02", "2021-01-03", "2021-06-01", "2021-07-01"]) \
             else "test_normal_run 3 KO")
     
     return resultado

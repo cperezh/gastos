@@ -489,145 +489,10 @@
   <order>
     <hop>
       <from>movimientos</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Filter rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows</from>
-      <to>Unique rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
       <to>subcategoria dtm</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Unique rows</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>subcategoria</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>categoria</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>subcategoria</name>
-      </field>
-      <field>
-        <name>categoria</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>subcategoria</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-      <field>
-        <name>categoria</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>movimientos</name>
     <type>TableInput</type>
@@ -641,6 +506,7 @@
     </partitioning>
     <connection>postgres gastos</connection>
     <sql>SELECT
+	DISTINCT
 	subcategoria,
 	categoria
 FROM edw.movimientos
@@ -709,7 +575,7 @@ order by subcategoria, categoria
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
+      <xloc>96</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -753,7 +619,7 @@ order by subcategoria, categoria
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>224</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>

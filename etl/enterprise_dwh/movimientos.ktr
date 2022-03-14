@@ -488,11 +488,96 @@
   </connection>
   <order>
     <hop>
+      <from>subcategoria_key</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Movimientos Staging</from>
+      <to>subcategoria_key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 2</from>
       <to>Insert / update (edw)</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Insert / update (edw)</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres gastos</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>edw</schema>
+      <table>movimientos</table>
+      <key>
+        <name>fvalor</name>
+        <field>fvalor</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>importe</name>
+        <field>importe</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>saldo</name>
+        <field>saldo</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>categoria</name>
+        <rename>categoria</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>subcategoria</name>
+        <rename>subcategoria</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>descripcion</name>
+        <rename>descripcion</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>comentario</name>
+        <rename>comentario</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>imagen</name>
+        <rename>imagen</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Movimientos Staging</name>
     <type>TableInput</type>
@@ -718,14 +803,58 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>64</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert / update (edw)</name>
-    <type>InsertUpdate</type>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>dia_key</name>
+        <rename/>
+      </field>
+      <field>
+        <name>importe_abs</name>
+        <rename>importe</rename>
+      </field>
+      <field>
+        <name>saldo</name>
+        <rename/>
+      </field>
+      <field>
+        <name>subcategoria_key</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>subcategoria_key</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -735,68 +864,32 @@ order by fvalor, importe, saldo
       <schema_name/>
     </partitioning>
     <connection>postgres gastos</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
+    <cache>N</cache>
+    <cache_load_all>Y</cache_load_all>
+    <cache_size>0</cache_size>
     <lookup>
-      <schema>edw</schema>
-      <table>movimientos</table>
+      <schema>dtm</schema>
+      <table>subcategoria</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>fvalor</name>
-        <field>fvalor</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>importe</name>
-        <field>importe</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>saldo</name>
-        <field>saldo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>fvalor</name>
-        <rename>fvalor</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>categoria</name>
-        <rename>categoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
         <name>subcategoria</name>
-        <rename>subcategoria</rename>
-        <update>Y</update>
-      </value>
+        <field>subcategoria</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>categoria</name>
+        <field>categoria</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
       <value>
-        <name>descripcion</name>
-        <rename>descripcion</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>comentario</name>
-        <rename>comentario</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>imagen</name>
-        <rename>imagen</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>importe</name>
-        <rename>importe</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>saldo</name>
-        <rename>saldo</rename>
-        <update>N</update>
+        <name>subcategoria_key</name>
+        <rename>subcategoria_key</rename>
+        <default/>
+        <type>Integer</type>
       </value>
     </lookup>
     <attributes/>
@@ -808,7 +901,7 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>208</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
