@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>movimientos</name>
+    <name>subcategoria</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/01/09 22:23:27.292</created_date>
+    <created_date>2022/03/15 21:49:48.356</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/09 22:23:27.292</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2022/03/15 21:49:48.356</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -488,91 +488,16 @@
   </connection>
   <order>
     <hop>
-      <from>subcategoria_key</from>
-      <to>Select values 2</to>
+      <from>Movimientos Staging</from>
+      <to>Database lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>Insert / update (edw)</to>
+      <from>Database lookup</from>
+      <to>Insert</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Insert / update (edw)</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>postgres gastos</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>edw</schema>
-      <table>movimientos</table>
-      <key>
-        <name>fvalor</name>
-        <field>fvalor</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>importe</name>
-        <field>importe</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>saldo</name>
-        <field>saldo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>categoria</name>
-        <rename>categoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>subcategoria</name>
-        <rename>subcategoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>descripcion</name>
-        <rename>descripcion</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>comentario</name>
-        <rename>comentario</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>imagen</name>
-        <rename>imagen</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>688</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Movimientos Staging</name>
     <type>TableInput</type>
@@ -586,16 +511,10 @@
     </partitioning>
     <connection>postgres gastos</connection>
     <sql>SELECT
-  fvalor
-, categoria
-, subcategoria
-, descripcion
-, comentario
-, imagen
-, importe
-, saldo
+	DISTINCT
+	subcategoria,
+	categoria
 FROM staging.movimientos
-order by fvalor, importe, saldo
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -605,13 +524,13 @@ order by fvalor, importe, saldo
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Date</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>fvalor</name>
-        <length>-1</length>
+        <name>subcategoria</name>
+        <length>100</length>
         <precision>-1</precision>
         <origin>Movimientos Staging</origin>
-        <comments>fvalor</comments>
+        <comments>subcategoria</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -650,144 +569,6 @@ order by fvalor, importe, saldo
         <date_format_timezone>Europe/Paris</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>subcategoria</name>
-        <length>100</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>subcategoria</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>descripcion</name>
-        <length>2000</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>descripcion</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>comentario</name>
-        <length>2000</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>comentario</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>imagen</name>
-        <length>100</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>imagen</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>BigNumber</type>
-        <storagetype>normal</storagetype>
-        <name>importe</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>importe</comments>
-        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>BigNumber</type>
-        <storagetype>normal</storagetype>
-        <name>saldo</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>saldo</comments>
-        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
     </row-meta>
     <attributes/>
     <cluster_schema/>
@@ -798,14 +579,14 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>144</yloc>
+      <xloc>128</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
+    <name>Insert</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -814,22 +595,35 @@ order by fvalor, importe, saldo
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>dia_key</name>
-      </field>
-      <field>
-        <name>importe_abs</name>
-        <rename>importe</rename>
-      </field>
-      <field>
-        <name>saldo</name>
-      </field>
-      <field>
-        <name>subcategoria_key</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <connection>postgres gastos</connection>
+    <commit>100</commit>
+    <update_bypassed>Y</update_bypassed>
+    <lookup>
+      <schema>edw</schema>
+      <table>subcategoria</table>
+      <key>
+        <name>subcategoria</name>
+        <field>subcategoria</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>categoria_key</name>
+        <field>categoria_key</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>subcategoria</name>
+        <rename>subcategoria</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>categoria_key</name>
+        <rename>categoria_key</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -839,13 +633,13 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>144</yloc>
+      <xloc>368</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>subcategoria_key</name>
+    <name>Database lookup</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -857,20 +651,14 @@ order by fvalor, importe, saldo
     </partitioning>
     <connection>postgres gastos</connection>
     <cache>N</cache>
-    <cache_load_all>Y</cache_load_all>
+    <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
-      <schema>dtm</schema>
-      <table>subcategoria</table>
+      <schema>edw</schema>
+      <table>categoria</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>subcategoria</name>
-        <field>subcategoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
       <key>
         <name>categoria</name>
         <field>categoria</field>
@@ -878,8 +666,8 @@ order by fvalor, importe, saldo
         <name2/>
       </key>
       <value>
-        <name>subcategoria_key</name>
-        <rename>subcategoria_key</rename>
+        <name>categoria_key</name>
+        <rename>categoria_key</rename>
         <default/>
         <type>Integer</type>
       </value>
@@ -893,8 +681,8 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>144</yloc>
+      <xloc>256</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -37,21 +37,30 @@ CREATE TABLE dtm.subcategoria (
 );
 
 -------------------------------------------------------
--- EDH SCHEMA (Enterprise Data Warehouse --------------
+-- EDH SCHEMA (Enterprise Data Warehouse) -------------
 -------------------------------------------------------
 
 CREATE SCHEMA edw;
 
 CREATE TABLE edw.movimientos (
+    movimientos_key integer NOT NULL,
     fvalor date,
-    categoria character(100),
-    subcategoria character(100),
-    descripcion character(2000),
-    comentario character(2000),
-    imagen character(100),
-    importe numeric,
+	importe numeric,
     saldo numeric,
-    movimientos_key integer NOT NULL
+    subcategoria_key character(100),
+    descripcion character(2000),
+    comentario character(2000)
+);
+
+CREATE TABLE edw.subcategoria (
+    subcategoria_key integer NOT NULL,
+    categoria_key integer NOT NULL,
+	subcategoria character(200) NOT NULL
+);
+
+CREATE TABLE edw.categoria (
+    categoria_key integer NOT NULL,
+    categoria character(200) NOT NULL
 );
 
 --------------------------------
@@ -116,6 +125,26 @@ CREATE SEQUENCE edw.movimientos_movimientos_key_seq
 
 ALTER SEQUENCE edw.movimientos_movimientos_key_seq OWNED BY edw.movimientos.movimientos_key;
 
+CREATE SEQUENCE edw.subcategoria_subcategoria_key_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+	
+ALTER SEQUENCE edw.subcategoria_subcategoria_key_seq OWNED BY edw.subcategoria.subcategoria_key;
+
+CREATE SEQUENCE edw.categoria_categoria_key_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+	
+ALTER SEQUENCE edw.categoria_categoria_key_seq OWNED BY edw.categoria.categoria_key;
+
 ALTER TABLE ONLY dtm.dia ALTER COLUMN dia_key SET DEFAULT nextval('dtm.dia_dia_key_seq'::regclass);
 
 ALTER TABLE ONLY dtm.gastos_fact ALTER COLUMN gastos_fact_key SET DEFAULT nextval('dtm.gastos_fact_gastos_fact_key_seq'::regclass);
@@ -124,7 +153,9 @@ ALTER TABLE ONLY dtm.subcategoria ALTER COLUMN subcategoria_key SET DEFAULT next
 
 ALTER TABLE ONLY edw.movimientos ALTER COLUMN movimientos_key SET DEFAULT nextval('edw.movimientos_movimientos_key_seq'::regclass);
 
+ALTER TABLE ONLY edw.subcategoria ALTER COLUMN subcategoria_key SET DEFAULT nextval('edw.subcategoria_subcategoria_key_seq'::regclass);
 
+ALTER TABLE ONLY edw.categoria ALTER COLUMN categoria_key SET DEFAULT nextval('edw.categoria_categoria_key_seq'::regclass);
 --------------------------------
 ----------- PKs ----------------
 --------------------------------
@@ -140,3 +171,9 @@ ALTER TABLE ONLY dtm.subcategoria
 
 ALTER TABLE ONLY edw.movimientos
     ADD CONSTRAINT movimientos_pkey PRIMARY KEY (movimientos_key);
+
+ALTER TABLE ONLY edw.subcategoria
+    ADD CONSTRAINT subcategoria_pkey PRIMARY KEY (subcategoria_key);
+	
+ALTER TABLE ONLY edw.categoria
+    ADD CONSTRAINT categoria_pkey PRIMARY KEY (categoria_key);

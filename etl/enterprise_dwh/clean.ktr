@@ -503,11 +503,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Set field value to a constant 2</from>
-      <to>Insert / update</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Filter PK not null</from>
       <to>subcat not null</to>
       <enabled>Y</enabled>
@@ -528,7 +523,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>movimientos</from>
+      <from>staging.movimientos</from>
       <to>Filter PK not null</to>
       <enabled>Y</enabled>
     </hop>
@@ -559,7 +554,12 @@
     </hop>
     <hop>
       <from>MANSO Y RIVA, SL</from>
-      <to>Insert / update</to>
+      <to>staging.movimientos 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Set field value to a constant 2</from>
+      <to>staging.movimientos 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -711,66 +711,6 @@
     </GUI>
   </step>
   <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>postgres gastos</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>staging</schema>
-      <table>movimientos</table>
-      <key>
-        <name>fvalor</name>
-        <field>fvalor</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>importe</name>
-        <field>importe</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>saldo</name>
-        <field>saldo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>categoria</name>
-        <rename>categoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>subcategoria</name>
-        <rename>subcategoria</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>MANSO Y RIVA, SL</name>
     <type>FilterRows</type>
     <description/>
@@ -782,7 +722,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Set field value to a constant 2</send_true_to>
-    <send_false_to>Insert / update</send_false_to>
+    <send_false_to>staging.movimientos 2</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -988,7 +928,7 @@
     </GUI>
   </step>
   <step>
-    <name>movimientos</name>
+    <name>staging.movimientos</name>
     <type>TableInput</type>
     <description/>
     <distribute>N</distribute>
@@ -1253,6 +1193,74 @@ FROM staging.movimientos
     <GUI>
       <xloc>384</xloc>
       <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>staging.movimientos 2</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres gastos</connection>
+    <schema>staging</schema>
+    <table>movimientos</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>fvalor</column_name>
+        <stream_name>fvalor</stream_name>
+      </field>
+      <field>
+        <column_name>categoria</column_name>
+        <stream_name>categoria</stream_name>
+      </field>
+      <field>
+        <column_name>subcategoria</column_name>
+        <stream_name>subcategoria</stream_name>
+      </field>
+      <field>
+        <column_name>descripcion</column_name>
+        <stream_name>descripcion</stream_name>
+      </field>
+      <field>
+        <column_name>importe</column_name>
+        <stream_name>importe</stream_name>
+      </field>
+      <field>
+        <column_name>saldo</column_name>
+        <stream_name>saldo</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

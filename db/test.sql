@@ -1,5 +1,7 @@
 -- Truncado inicial
 truncate table staging.movimientos;
+truncate table edw.categoria;
+truncate table edw.subcategoria;
 truncate table edw.movimientos;
 truncate table dtm.gastos_fact;
 delete from dtm.subcategoria;
