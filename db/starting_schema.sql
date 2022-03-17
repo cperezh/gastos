@@ -11,6 +11,7 @@
 -------------------------------
 -- dtm SCHEMA --------------
 -------------------------------
+DROP SCHEMA dtm CASCADE;
 
 CREATE SCHEMA dtm;
 
@@ -39,15 +40,16 @@ CREATE TABLE dtm.subcategoria (
 -------------------------------------------------------
 -- EDH SCHEMA (Enterprise Data Warehouse) -------------
 -------------------------------------------------------
+DROP SCHEMA edw CASCADE;
 
 CREATE SCHEMA edw;
 
 CREATE TABLE edw.movimientos (
     movimientos_key integer NOT NULL,
-    fvalor date,
-	importe numeric,
-    saldo numeric,
-    subcategoria_key character(100),
+    fvalor date NOT NULL,
+	importe numeric NOT NULL,
+    saldo numeric NOT NULL,
+    subcategoria_key integer NOT NULL,
     descripcion character(2000),
     comentario character(2000)
 );
@@ -66,7 +68,7 @@ CREATE TABLE edw.categoria (
 --------------------------------
 -- STAGING SCHEMA --------------
 --------------------------------
-
+DROP SCHEMA staging CASCADE;
 
 CREATE SCHEMA staging;
 

@@ -568,7 +568,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>560</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -839,7 +839,7 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>416</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -893,7 +893,7 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>272</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
