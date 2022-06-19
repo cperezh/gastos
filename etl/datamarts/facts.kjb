@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>facts</name>
   <description/>
   <extended_description/>
   <job_version/>
-  <directory>/</directory>
+  <directory>/datamarts</directory>
   <created_user>-</created_user>
   <created_date>2021/10/24 19:00:14.795</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2021/10/24 19:00:14.795</modified_date>
+  <modified_date>2022/06/19 10:40:23.342</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -313,10 +312,11 @@
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/Carlos/Proyectos/gastos/etl/datamarts/gastos_dtm.ktr</filename>
-      <transname/>
+      <filename/>
+      <transname>gastos_dtm</transname>
+      <directory>/datamarts</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>

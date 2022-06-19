@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>enterprise_dwh</name>
   <description/>
   <extended_description/>
   <job_version/>
-  <directory>/</directory>
+  <directory>/enterprise_dwh</directory>
   <created_user>-</created_user>
   <created_date>2021/12/26 12:25:18.265</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2021/12/26 12:25:18.265</modified_date>
+  <modified_date>2022/06/19 10:38:31.324</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -313,10 +312,11 @@
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/Carlos/Proyectos/Gastos/etl/enterprise_dwh/movimientos.ktr</filename>
-      <transname/>
+      <filename/>
+      <transname>movimientos</transname>
+      <directory>/enterprise_dwh</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -352,10 +352,11 @@
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/Carlos/Proyectos/gastos/etl/enterprise_dwh/clean.ktr</filename>
-      <transname/>
+      <filename/>
+      <transname>clean</transname>
+      <directory>/enterprise_dwh</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -391,10 +392,11 @@
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id/>
-      <filename>C:/Users/Carlos/Proyectos/gastos/etl/enterprise_dwh/categoria.ktr</filename>
-      <transname/>
+      <filename/>
+      <transname>categoria</transname>
+      <directory>/enterprise_dwh</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -430,10 +432,11 @@
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname/>
+      <transname>subcategoria</transname>
+      <directory>/enterprise_dwh</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -452,8 +455,11 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration/>
+      <run_configuration>Pentaho local</run_configuration>
       <suppress_result_data>N</suppress_result_data>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>

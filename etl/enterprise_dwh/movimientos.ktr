@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
     <name>movimientos</name>
@@ -6,7 +5,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>/</directory>
+    <directory>/enterprise_dwh</directory>
     <parameters>
     </parameters>
     <log>
@@ -429,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/09 22:23:27.292</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/09 22:23:27.292</modified_date>
+    <modified_date>2022/06/19 10:39:38.418</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -495,6 +494,11 @@
     <hop>
       <from>Select values 2</from>
       <to>Insert / update (edw)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Movimientos Staging</from>
+      <to>subcategoria_key</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -798,7 +802,7 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
+      <xloc>112</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>

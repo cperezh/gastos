@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>staging</name>
   <description/>
   <extended_description/>
   <job_version/>
   <job_status>0</job_status>
-  <directory>/</directory>
+  <directory>/staging</directory>
   <created_user>-</created_user>
   <created_date>2021/12/26 12:23:14.746</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2021/12/26 12:23:14.746</modified_date>
+  <modified_date>2022/06/19 10:41:37.655</modified_date>
   <parameters>
     <parameter>
       <name>FCSV</name>
@@ -319,10 +318,11 @@
       <description/>
       <type>TRANS</type>
       <attributes/>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Entry.Current.Directory}/movimientos.ktr</filename>
-      <transname/>
+      <filename/>
+      <transname>movimientos</transname>
+      <directory>/staging</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
