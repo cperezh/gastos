@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2022/03/19 11:34:39.460</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/19 07:52:10.957</modified_date>
+    <modified_date>2022/06/19 12:52:24.602</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -551,6 +551,60 @@
     </GUI>
   </step>
   <step>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres gastos</connection>
+    <commit>100</commit>
+    <update_bypassed>Y</update_bypassed>
+    <lookup>
+      <schema>edw</schema>
+      <table>subcategoria</table>
+      <key>
+        <name>subcategoria</name>
+        <field>subcategoria</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>categoria_key</name>
+        <field>categoria_key</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>subcategoria</name>
+        <rename>subcategoria</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>categoria_key</name>
+        <rename>categoria_key</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Select values</name>
     <type>SelectValues</type>
     <description/>
@@ -566,23 +620,6 @@
       <meta>
         <name>subcategoria</name>
         <rename>subcategoria</rename>
-        <type>None</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>categoria</name>
-        <rename>categoria</rename>
         <type>None</type>
         <length>100</length>
         <precision>-2</precision>
@@ -711,60 +748,6 @@ FROM
     </remotesteps>
     <GUI>
       <xloc>160</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>postgres gastos</connection>
-    <commit>100</commit>
-    <update_bypassed>Y</update_bypassed>
-    <lookup>
-      <schema>edw</schema>
-      <table>subcategoria</table>
-      <key>
-        <name>subcategoria</name>
-        <field>subcategoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>categoria_key</name>
-        <field>categoria_key</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>subcategoria</name>
-        <rename>subcategoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>categoria_key</name>
-        <rename>categoria_key</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>

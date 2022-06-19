@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/09 22:23:27.292</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/19 10:39:38.418</modified_date>
+    <modified_date>2022/06/19 13:19:26.613</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -487,18 +487,33 @@
   </connection>
   <order>
     <hop>
-      <from>subcategoria_key</from>
-      <to>Select values 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values 2</from>
       <to>Insert / update (edw)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Stream lookup</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Movimientos Staging</from>
-      <to>subcategoria_key</to>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Stream lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>subcategoria</from>
+      <to>String operations 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 2</from>
+      <to>Stream lookup</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -538,13 +553,8 @@
         <name2/>
       </key>
       <value>
-        <name>categoria</name>
-        <rename>categoria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>subcategoria</name>
-        <rename>subcategoria</rename>
+        <name>fvalor</name>
+        <rename>fvalor</rename>
         <update>Y</update>
       </value>
       <value>
@@ -558,8 +568,18 @@
         <update>Y</update>
       </value>
       <value>
-        <name>imagen</name>
-        <rename>imagen</rename>
+        <name>importe</name>
+        <rename>importe</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>saldo</name>
+        <rename>saldo</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>subcategoria_key</name>
+        <rename>subcategoria_key</rename>
         <update>Y</update>
       </value>
     </lookup>
@@ -572,7 +592,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>656</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -595,7 +615,6 @@
 , subcategoria
 , descripcion
 , comentario
-, imagen
 , importe
 , saldo
 FROM staging.movimientos
@@ -724,29 +743,6 @@ order by fvalor, importe, saldo
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>imagen</name>
-        <length>100</length>
-        <precision>-1</precision>
-        <origin>Movimientos Staging</origin>
-        <comments>imagen</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>Europe/Paris</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
         <type>BigNumber</type>
         <storagetype>normal</storagetype>
         <name>importe</name>
@@ -803,7 +799,7 @@ order by fvalor, importe, saldo
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>144</yloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -820,17 +816,28 @@ order by fvalor, importe, saldo
     </partitioning>
     <fields>
       <field>
-        <name>dia_key</name>
+        <name>fvalor</name>
+        <rename/>
       </field>
       <field>
-        <name>importe_abs</name>
-        <rename>importe</rename>
+        <name>descripcion</name>
+        <rename/>
+      </field>
+      <field>
+        <name>comentario</name>
+        <rename/>
+      </field>
+      <field>
+        <name>importe</name>
+        <rename/>
       </field>
       <field>
         <name>saldo</name>
+        <rename/>
       </field>
       <field>
         <name>subcategoria_key</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -843,14 +850,14 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>512</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>subcategoria_key</name>
-    <type>DBLookup</type>
+    <name>subcategoria</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -860,26 +867,128 @@ order by fvalor, importe, saldo
       <schema_name/>
     </partitioning>
     <connection>postgres gastos</connection>
-    <cache>N</cache>
-    <cache_load_all>Y</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>dtm</schema>
-      <table>subcategoria</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
+    <sql>select 
+	s.subcategoria_key,
+	s.subcategoria,
+	c.categoria
+from edw.subcategoria s
+inner join edw.categoria c on c.categoria_key = s.categoria_key
+order by 2,3</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>subcategoria_key</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>subcategoria</origin>
+        <comments>subcategoria_key</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
         <name>subcategoria</name>
-        <field>subcategoria</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
+        <length>200</length>
+        <precision>-1</precision>
+        <origin>subcategoria</origin>
+        <comments>subcategoria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>categoria</name>
+        <length>200</length>
+        <precision>-1</precision>
+        <origin>subcategoria</origin>
+        <comments>categoria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>en_US</date_format_locale>
+        <date_format_timezone>Europe/Paris</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream lookup</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>String operations 2</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
       <key>
         <name>categoria</name>
         <field>categoria</field>
-        <condition>=</condition>
-        <name2/>
+      </key>
+      <key>
+        <name>subcategoria</name>
+        <field>subcategoria</field>
       </key>
       <value>
         <name>subcategoria_key</name>
@@ -897,8 +1006,114 @@ order by fvalor, importe, saldo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
+      <xloc>352</xloc>
       <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>categoria</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>subcategoria</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 2</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>subcategoria</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>categoria</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
